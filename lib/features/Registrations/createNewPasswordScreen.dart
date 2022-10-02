@@ -1,0 +1,151 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:flutter/material.dart';
+import 'package:notey/shared/widgets/CustomCTAButton.dart';
+import 'package:notey/utils/validator.dart';
+import 'package:provider/provider.dart';
+import 'package:notey/interceptors/di.dart';
+import 'package:notey/resources/font_manager.dart';
+import 'package:notey/resources/color_manager.dart';
+import 'package:notey/resources/assets_manager.dart';
+import 'package:notey/shared/widgets/CustomeSvg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/features/Registrations/auth_provider.dart';
+import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
+
+
+class CreateNewPassword extends StatelessWidget {
+  CreateNewPassword({Key? key}) : super(key: key);
+  var data = sl<AuthProvider>();
+//yahya.m.abunada@gmail.com
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.info_outline))
+          ],
+          // backgroundColor: Colors.white,
+        ),
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Consumer<AuthProvider>(
+            builder: (context, provider, _) => Scaffold(
+                body: Form(
+              key: data.formKey2,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Spacer(),
+                    Center(
+                      child: Text('Change password',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline1!
+                              .copyWith(fontSize: FontSize.s22.sp)),
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+                    Wrap(
+                      children: [
+                        Text(
+                          'Your new password must be different from previous used passwords.',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2!
+                              .copyWith(
+                                  color: ColorManager.lightGrey,
+                                  fontSize: FontSize.s14.sp),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    CustomTextFiled(
+                      obscureText: provider.isObscure,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          provider.visibility();
+                        },
+                        child: CustomSvgAssets(
+                          color: ColorManager.primary,
+                          path: provider.isObscure
+                              ? IconAssets.hide
+                              : IconAssets.show,
+                        ),
+                      ),
+                      prefixIcon: CustomSvgAssets(
+                        color: ColorManager.primary,
+                        path: IconAssets.lock,
+                      ),
+                      hintText: 'Current Password',
+                      focuse: (_) => FocusScope.of(context).nextFocus(),
+                      textInputAction: TextInputAction.next,
+                      onChanged: (val) {
+                        data.currentPass.text = val!;
+                      },
+                      validator: (value) =>
+                          Validator2.validatePassword(value ?? ""),
+                    ),
+                    SizedBox(
+                      height: 4.h,
+                    ),
+                    Text(
+                      "Must be at least 8 characters.",
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1!
+                          .copyWith(color: ColorManager.lightGrey),
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    CustomTextFiled(
+                      prefixIcon: CustomSvgAssets(
+                        color: ColorManager.primary,
+                        path: IconAssets.lock,
+                      ),
+                      hintText: 'New Password',
+                      focuse: (_) => FocusScope.of(context).nextFocus(),
+                      textInputAction: TextInputAction.next,
+                      onChanged: (val) {
+                        data.newPass.text = val!;
+                      },
+                      validator: (val) {
+                        if (val!.isEmpty) return 'Empty';
+                        // if (val != provider.passwordController.text)
+                        //   return 'Not Match';
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    CustomeCTAButton(
+                      trigger: data.loading,
+                      ProgressColor: ColorManager.white,
+                      primary: ColorManager.primary,
+                      onPressed: () {
+                        sl<AuthProvider>().changePasswordProvider();
+                        // sl<NavigationService>().navigateTo(login);
+                      },
+                      title: "Confirm",
+                    ),
+                    Spacer(
+                      flex: 2,
+                    ),
+                  ],
+                ),
+              ),
+            )),
+          ),
+        ));
+  }
+}
