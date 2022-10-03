@@ -48,8 +48,12 @@ class DioExceptions implements Exception {
       case 400:
         return 'Bad request';
       case 401:
-        sl<SharedLocal>().removeUser();
-        sl<NavigationService>().navigateToAndRemove(Routes.login);
+        if (sl<SharedLocal>().getUser().token == null) {
+          print("inside 401 Unauthorized case 401");
+        } else {
+          sl<SharedLocal>().removeUser();
+          sl<NavigationService>().navigateToAndRemove(Routes.login);
+        }
         return 'Unauthorized';
       case 403:
         return 'Forbidden';

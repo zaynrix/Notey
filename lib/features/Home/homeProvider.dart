@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/taskModel.dart';
 import 'package:notey/utils/appConfig.dart';
@@ -10,71 +9,89 @@ import 'package:notey/repository/home_repo/task_repo.dart';
 import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
 
 class HomeProvider extends ChangeNotifier {
-  bool loading = false;
-  bool init = true;
+
+
   int? id = 0;
-  GlobalKey<ScaffoldState> sheetScafoldKey = GlobalKey();
-  TextEditingController noteTitle= TextEditingController();
+  bool? init ;
+  bool loading = false;
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> ScaffoldKeySheet = GlobalKey();
+  GlobalKey<ScaffoldState> ScaffoldKeySheet1 = GlobalKey();
+  TextEditingController noteTitle = TextEditingController();
 
   List<Data>? tasks = [];
 
 
+  // ------------------ Get Tasks ------------------
 
+  Future getHome() async {
+      init = false;
 
-  Future<void> getHome() async {
-    init = false;
+    print("This getHome");
     try {
+      // notifyListeners();
       TaskModel taskModel = await sl<HomeRepository>().getTasks();
       tasks = taskModel.data;
-
+      notifyListeners();
       if (tasks!.isEmpty) {
         init = true;
       }
+      print("init $init");
     } on DioError catch (e) {
       init = false;
       notifyListeners();
       AppConfig().showException(e);
     }
-    notifyListeners();
   }
 
-  Future<void> addTask() async {
-    print("note Title ${noteTitle.text}");
+  // ------------------ Add Task ------------------
+
+  Future addTask() async {
+    if (formKey.currentState!.validate()) {
     loading = true;
     notifyListeners();
-    try {
-      TaskModel taskModel = await sl<HomeRepository>().addTask(noteTitle.text);
-      tasks!.add(taskModel.singleData!);
+      try {
+        TaskModel taskModel =
+            await sl<HomeRepository>().addTask(noteTitle.text);
+        tasks!.add(taskModel.singleData!);
+      } on DioError catch (e) {
+        AppConfig().showException(e);
+      }
+
+      id = 0;
       loading = false;
+      noteTitle.clear();
+      sl<NavigationService>().pop();
       notifyListeners();
-    } on DioError catch (e) {
-      init = false;
-      AppConfig().showException(e);
-      loading = false;
     }
-    sl<NavigationService>().pop();
-    id = 0;
-    noteTitle.clear();
-    notifyListeners();
   }
 
-  Future<void> deleteTask() async {
+  // ------------------ Delete Task ------------------
+
+  Future deleteTask() async {
     loading = true;
     notifyListeners();
     try {
       await sl<HomeRepository>().deleteTask(id!);
       tasks!.removeWhere((i) => i.id == id);
+      getHome();
+      loading = false;
+      notifyListeners();
     } on DioError catch (e) {
+      init = false;
+      loading = false;
+      notifyListeners();
       AppConfig().showException(e);
     }
-    init = false;
-    loading = false;
     noteTitle.clear();
     id = 0;
     notifyListeners();
   }
 
-  Future<void> updateTask() async {
+  // ------------------ Update Task ------------------
+
+  Future updateTask() async {
     loading = true;
     notifyListeners();
     try {
@@ -82,21 +99,23 @@ class HomeProvider extends ChangeNotifier {
       tasks!.forEach(
         (element) {
           id == element.id ? element.title = noteTitle.text : "";
-          notifyListeners();
           loading = false;
           notifyListeners();
         },
       );
     } on DioError catch (e) {
+      loading = false;
+      notifyListeners();
       AppConfig().showException(e);
     }
-    init = false;
-    loading = false;
     id = 0;
+    init = false;
     sl<NavigationService>().pop();
     noteTitle.clear();
     notifyListeners();
   }
+
+  // ------------------ Refresh Task ------------------
 
   refresh() async {
     tasks!.clear();
@@ -104,18 +123,18 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  languageSheet() {
+  // ------------------ Show Language Sheet ------------------
+
+  languageSheet(GlobalKey ScaffoldKeySheet) {
     id == 0 ? 0 : id;
     id == 0 ? noteTitle.clear() : noteTitle;
-    print("This id $id");
-    print("Lang ${noteTitle.text}");
     showModalBottomSheet(
       isDismissible: false,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
       backgroundColor: ColorManager.darkGrey,
-      context: sheetScafoldKey.currentContext!,
+      context: ScaffoldKeySheet.currentContext!,
       builder: (context) => BottomSheetNote(),
     );
   }

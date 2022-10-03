@@ -6,6 +6,7 @@ import 'package:notey/features/Registrations/createNewPasswordScreen.dart';
 import 'package:notey/features/Registrations/forgetPasswordScreen.dart';
 import 'package:notey/features/Registrations/loginScreen.dart';
 import 'package:notey/features/Registrations/signUpScreen.dart';
+import 'package:notey/features/Settings/contactUsScreen.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/features/Settings/settingScreen.dart';
 import 'package:notey/features/Settings/typography.dart';
@@ -19,7 +20,6 @@ import 'package:provider/provider.dart';
 
 class RouterX {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    // final args = settings.arguments;
 
     switch (settings.name) {
       case Routes.splash:
@@ -54,13 +54,7 @@ class RouterX {
             child: CreateNewPassword(),
           ),
         );
-      // case Routes.bottomSheet:
-      //   return MaterialPageRoute(
-      //     builder: (_) => ChangeNotifierProvider(
-      //       create: (context) => HomeProvider(),
-      //       child: BottomSheetNote(),
-      //     ),
-      //   );
+
       case Routes.signUp:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider(
@@ -70,23 +64,19 @@ class RouterX {
         );
       case Routes.home:
         return MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider.value(
-            value: sl<HomeProvider>(),
-            child: HomeScreen(),
-          ),
+          builder: (_) => HomeScreen(),
         );  case Routes.setting:
         return MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider.value(
-            value: sl<SettingProvider>(),
-            child: SettingsScreen(),
-          ),
+          builder: (_) => SettingsScreen(),
         );
       case Routes.typographyScreen:
         return MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider.value(
-            value: sl<AppConfig>(),
-            child: TypographyScreen(),
-          ),
+          builder: (_) => TypographyScreen(),
+        );
+
+      case Routes.contactus:
+        return MaterialPageRoute(
+          builder: (context) => ContactUsScreen(),
         );
       default:
         return MaterialPageRoute(

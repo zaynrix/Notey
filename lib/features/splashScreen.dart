@@ -7,7 +7,8 @@ import 'package:notey/utils/appConfig.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen() {
-    sl<AppConfig>().loadData();
+    // print("this inside Splash Screen");
+
   }
 
   @override

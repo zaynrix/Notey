@@ -13,7 +13,9 @@ import '../../../routing/routes.dart';
 import '../../shared/widgets/CustomCTAButton.dart';
 
 class ForgetPassword extends StatelessWidget {
-  const ForgetPassword({Key? key}) : super(key: key);
+  ForgetPassword(){
+    print("Forget");
+  }
 
   @override
   Widget build(BuildContext context) {

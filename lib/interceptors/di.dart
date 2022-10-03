@@ -1,12 +1,16 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:notey/api/endPoints.dart';
 import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/api/remote/auth_api.dart';
 import 'package:notey/features/Home/homeProvider.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
+import 'package:notey/interceptors/cache_Interceptor.dart';
+import 'package:notey/interceptors/connect.dart';
 import 'package:notey/repository/home_repo/task_repo.dart';
 import 'package:notey/repository/setting_repo/srtting_repo.dart';
 import 'package:notey/repository/user_repo/login_repo.dart';
@@ -18,7 +22,7 @@ import 'dio_interceptor.dart';
 import 'logger_interceptor.dart';
 
 final sl = GetIt.instance;
-
+late bool isConnected;
 Future<void> init() async {
   Dio client = Dio(
     BaseOptions(
@@ -31,6 +35,7 @@ Future<void> init() async {
     ),
   )..interceptors.addAll([
       DioInterceptor(),
+    // CacheInterceptor(),
       // LoggerInterceptor(),
     ]);
 
@@ -40,11 +45,11 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LoginRepository());
   sl.registerLazySingleton(() => SettingRepository());
   sl.registerLazySingleton(() => HomeRepository());
-  sl.registerLazySingleton(() => DioInterceptor());
 
 
 
 
+  sl.registerLazySingleton(() => Connection());
   sl.registerLazySingleton(() => HomeProvider());
   sl.registerLazySingleton(() => SettingProvider());
   sl.registerLazySingleton(() => AuthProvider());
@@ -58,3 +63,4 @@ Future<void> init() async {
     ),
   );
 }
+

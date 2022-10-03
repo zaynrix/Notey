@@ -1,36 +1,64 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/services.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:notey/features/Home/homeProvider.dart';
-import 'package:notey/features/Registrations/auth_provider.dart';
+import 'package:flutter/services.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
-import 'package:notey/interceptors/dio_interceptor.dart';
+import 'package:notey/interceptors/connect.dart';
+import 'package:notey/utils/appConfig.dart';
+import 'package:provider/provider.dart';
 import 'package:notey/routing/routes.dart';
 import 'package:notey/routing/router.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/routing/navigation.dart';
 import 'package:notey/resources/theme_manager.dart';
+import 'package:notey/features/Home/homeProvider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notey/utils/appConfig.dart';
-import 'package:provider/provider.dart';
+import 'package:notey/features/Registrations/auth_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   await init();
+  sl<AppConfig>().loadData();
+
+  // Create customized instance which can be registered via dependency injection
+  // final InternetConnectionChecker customInstance =
+  // createInstance(
+  //   checkTimeout: const Duration(seconds: 1),
+  //   checkInterval: const Duration(seconds: 1),
+  // );
+
+  // Check internet connection with created instance
+  // await execute(customInstance);
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark),
   );
+
+  // c. = Duration(seconds: 1);
+  // internetConnectionChecker. = Duration(seconds: 1);
+  // internetConnectionChecker.onStatusChange.listen((status) {
+  //   add(OnInternetConnectionChanged(
+  //       status == InternetConnectionStatus.disconnected ? false : true));
+  // });
+
+  // final InternetConnectionChecker customInstance =
+  // InternetConnectionChecker.crea(
+  //   checkTimeout: const Duration(seconds: 1),
+  //   checkInterval: const Duration(seconds: 1),
+  // );
+
+  // Check internet connection with created instance
   runApp(
     EasyLocalization(
       supportedLocales: const [
         Locale('en'),
         Locale('ar'),
-        // Locale('de'),
       ],
       path: 'assets/translations',
       startLocale: Locale("en"),
@@ -38,7 +66,25 @@ void main() async {
       child: MyApp(),
     ),
   );
+  // await sl<Connection>().execute(InternetConnectionChecker());
+  // final InternetConnectionChecker customInstance = InternetConnectionChecker();
+  // customInstance.checkInterval = Duration(seconds: 1);
+  //
+  // await sl<Connection>().execute(customInstance);
 }
+// Route onGenerateRoute(RouteSettings settings) {
+//   int ncalls = 0;
+//   Widget builder_(BuildContext context) {
+//     ncalls++;
+//     print("[$ncalls] Building widget ${settings.name}");
+//     return Home(Uri.parse(settings.name));
+//   }
+
+//   return MaterialPageRoute<void>(
+//     builder: builder_, //(context) => path.builder(context, match),
+//     settings: settings,
+//   );
+// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -50,23 +96,21 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MultiProvider(
           providers: [
+            StreamProvider<InternetConnectionStatus>(
+                initialData: InternetConnectionStatus.connected,
+                create: (_) {
+                  return InternetConnectionChecker().onStatusChange;
+                }),
             ChangeNotifierProvider.value(
               value: sl<HomeProvider>(),
             ),
             ChangeNotifierProvider.value(
-              value: sl<AuthProvider>(),
-            ),
-            ChangeNotifierProvider.value(
               value: sl<SettingProvider>(),
             ),
-            ChangeNotifierProvider.value(
-              value: sl<AppConfig>(),
-            ), ChangeNotifierProvider.value(
-              value: sl<DioInterceptor>(),
-            ),
+            // ChangeNotifierProvider.value(
+            //   value: sl<Connection>(),
+            // ),
           ],
-          // yahya123123@gmail.comsn
-          // password yahya123321
           child: MaterialApp(
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
@@ -77,6 +121,8 @@ class MyApp extends StatelessWidget {
             theme: getApplicationTheme(),
             navigatorKey: sl<NavigationService>().navigatorKey,
             initialRoute: Routes.splash,
+            // onGenerateInitialRoutes: (initialRoute)=>[RouterX.generateRoute(RouteSettings(name:initialRoute))],
+
             onGenerateRoute: RouterX.generateRoute,
           ),
         );

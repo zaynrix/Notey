@@ -28,66 +28,69 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
       padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
       child: SingleChildScrollView(
         child: Consumer<HomeProvider>(
-          builder: (context, data, child) => Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    AppStrings().addNote,
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
-                        color: ColorManager.white,
-                        fontWeight: FontWeightManager.semiBold),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 32.h,
-              ),
-              CustomTextFiled(
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(15),
-                ],
-                maxLines: 5,
-                controller: data.noteTitle,
-                hintText: '${AppStrings().typeSomething}',
-                keyboardType: TextInputType.name,
-                focuse: (_) => FocusScope.of(context).nextFocus(),
-                textInputAction: TextInputAction.next,
-                onChanged: (val) {
-                  data.noteTitle.text = val!;
-                },
-                validator: (value) => Validator2.validateName(value ?? ""),
-              ),
-              SizedBox(
-                height: 32.h,
-              ),
-              CustomeCTAButton(
-                trigger: data.loading,
-                primary: ColorManager.secondColor,
-                onPressed: () {
-                  data.id == 0 ? data.addTask() : data.updateTask();
-                },
-                title: data.id != 0 ? AppStrings().update : AppStrings().save,
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              CustomeCTAButtonCancel(
-                trigger: false,
+          builder: (context, data, child) => Form(
+            key: data.formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      AppStrings().addNote,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                          color: ColorManager.white,
+                          fontWeight: FontWeightManager.semiBold),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 32.h,
+                ),
+                CustomTextFiled(
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(15),
+                  ],
+                  maxLines: 5,
+                  controller: data.noteTitle,
+                  hintText: '${AppStrings().typeSomething}',
+                  keyboardType: TextInputType.name,
+                  focuse: (_) => FocusScope.of(context).nextFocus(),
+                  textInputAction: TextInputAction.next,
+                  onChanged: (val) {
+                    data.noteTitle.text = val!;
+                  },
+                  validator: (value) => Validator2.validateName(value ?? ""),
+                ),
+                SizedBox(
+                  height: 32.h,
+                ),
+                CustomeCTAButton(
+                  trigger: data.loading,
+                  primary: ColorManager.secondColor,
+                  onPressed: () {
+                    data.id == 0 ? data.addTask() : data.updateTask();
+                  },
+                  title: data.id != 0 ? AppStrings().update : AppStrings().save,
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                CustomeCTAButtonCancel(
+                  trigger: false,
 
-                // primary: ColorManager.parent,
-                onPressed: () {
-                  data.id = 0;
-                  data.noteTitle.clear();
-                  sl<NavigationService>().pop();
-                },
-                title: AppStrings().cancel,
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-            ],
+                  // primary: ColorManager.parent,
+                  onPressed: () {
+                    data.id = 0;
+                    data.noteTitle.clear();
+                    sl<NavigationService>().pop();
+                  },
+                  title: AppStrings().cancel,
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+              ],
+            ),
           ),
         ),
       ),

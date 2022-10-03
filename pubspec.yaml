@@ -44,7 +44,7 @@ dependencies:
   url_launcher: 6.1.5 #Luncher
   google_fonts: 2.1.0 # Google Fonts
   cupertino_icons: 1.0.2 #IOS Icons
-  flutter_offline: ^2.1.0
+#  flutter_offline: ^2.1.0
   easy_localization: #Localizations
   shared_preferences: #Local Storage
   flutter_screenutil: #Responsive Design
@@ -54,6 +54,7 @@ dependencies:
   introduction_screen: ^3.0.2
   simple_gradient_text: ^1.2.4
   grouped_list: ^5.1.2
+  internet_connection_checker:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

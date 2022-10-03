@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/features/Home/homeProvider.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
@@ -17,9 +18,8 @@ class CustomeSettingItemModel {
   void Function()? onPressed;
 
   CustomeSettingItemModel(
-      {this.path, this.onPressed,required this.title, this.redColor = false});
+      {this.path, this.onPressed, required this.title, this.redColor = false});
 }
-
 
 List<CustomeSettingItemModel> SettingItems = [
   CustomeSettingItemModel(
@@ -30,12 +30,10 @@ List<CustomeSettingItemModel> SettingItems = [
         path: IconAssets.setting,
         color: ColorManager.primary,
       ),
-      title: "Typography"
-
-  ),
+      title: "Typography"),
   CustomeSettingItemModel(
       onPressed: () {
-        sl<SettingProvider>().languageSheet();
+        sl<SettingProvider>().languageSheet(sl<HomeProvider>().ScaffoldKeySheet);
 // sl<Provider>(). getAddressProvider();
       },
       path: CustomSvgAssets(
@@ -51,9 +49,7 @@ List<CustomeSettingItemModel> SettingItems = [
         path: IconAssets.privacy,
         color: ColorManager.primary,
       ),
-      title: "Privacy"
-
-  ),
+      title: "Privacy"),
   CustomeSettingItemModel(
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.helpCenter);
@@ -71,8 +67,7 @@ List<CustomeSettingItemModel> SettingItems = [
         path: IconAssets.profile,
         color: ColorManager.primary,
       ),
-      title: "Contact Us"
-  ),
+      title: "Contact Us"),
   CustomeSettingItemModel(
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.contactus);
@@ -81,18 +76,16 @@ List<CustomeSettingItemModel> SettingItems = [
         path: IconAssets.dangerCircle,
         color: ColorManager.primary,
       ),
-      title: "Abouts"
-  ),
+      title: "Abouts"),
   CustomeSettingItemModel(
-    redColor: sl<SharedLocal>().getUser().token != "" ? true: false,
+    redColor: sl<SharedLocal>().getUser().token != "" ? true : false,
     onPressed: () {
       if (sl<SharedLocal>().getUser().token == null) {
         sl<NavigationService>().navigateTo(Routes.login);
       } else {
         // sl<SettingProvider>().logoutProvider();
         showDialog(
-          context:
-              sl<AuthProvider>().scaffoldKey.currentContext!,
+          context: sl<AuthProvider>().scaffoldKey.currentContext!,
           builder: (context) {
             return AlertDialog(
               title: Text('Logout'.tr()),
