@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
+import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/color_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +18,7 @@ class CustomeCTAButton extends StatelessWidget {
   Color? textColor;
   String? title;
   Color? ProgressColor;
-  final Gradient gradient;
+   Gradient? gradient;
 
   void Function()? onPressed;
   double fontSized;
@@ -34,7 +36,8 @@ class CustomeCTAButton extends StatelessWidget {
       this.title,
       this.primary,
       this.onPressed,
-        this.gradient = const LinearGradient(colors: [ColorManager.secondery,ColorManager.primary2 ]),
+        this.gradient
+        ,// =  LinearGradient(colors: sl<SettingProvider>().CCC[sl<SettingProvider>().colorIndex]),
 
         this.textColor = Colors.white})
       : super(key: key);
@@ -46,7 +49,9 @@ class CustomeCTAButton extends StatelessWidget {
         height: heighbox.h,
         decoration: BoxDecoration(
           color: color,
-          gradient: gradient,
+          gradient: LinearGradient(
+            colors: sl<SettingProvider>().CCC[sl<SettingProvider>().colorIndex]
+          ),
           borderRadius: BorderRadius.circular(6.r),
         ),
         child: ElevatedButton(

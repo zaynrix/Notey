@@ -20,15 +20,11 @@ import 'package:notey/shared/skeletonWidget/ShimmerHelper.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen() {
-    // sl<HomeProvider>().getHome();
-    print("home Screen");
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeProvider>(
-      builder: (context, value, child) => Scaffold(
+    return Consumer2<HomeProvider,SettingProvider>(
+      builder: (context, value,v2, child) => Scaffold(
         key: value.ScaffoldKeySheet,
         floatingActionButton: FloatingActionButton(
           elevation: 16,
@@ -51,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                   padding: EdgeInsets.all(16.0.w),
                   child: CustomSvgAssets(
                     path: IconAssets.search,
-                    color: ColorManager.primary,
+                    color: v2.CCC[v2.colorIndex].first,
                   ),
                 ),
               ),
@@ -215,10 +211,7 @@ class noteCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
               gradient: LinearGradient(
-                colors: [
-                  ColorManager.secondery,
-                  ColorManager.primary2,
-                ],
+                colors: value.CCC[value.colorIndex],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),

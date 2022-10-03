@@ -97,8 +97,8 @@ class SettingsScreen extends StatelessWidget {
                   height: 25.h,
                 ),
                 Expanded(
-                  child: Consumer<HomeProvider>(
-                    builder: (context, data, child) => ListView.separated(
+                  child: Consumer2<HomeProvider,SettingProvider>(
+                    builder: (context, data, v2,child) => ListView.separated(
                       shrinkWrap: true,
                       separatorBuilder: (context, index) => Divider(
                         height: 14.h,
@@ -110,7 +110,9 @@ class SettingsScreen extends StatelessWidget {
                             redColor: SettingItems[index].redColor,
                             onPressed: SettingItems[index].onPressed,
                             title: SettingItems[index].title,
-                            path: SettingItems[index].path);
+                            // path: SettingItems[index].path,
+                          path2: SettingItems[index].path,
+                        );
                       },
                     ),
                   ),

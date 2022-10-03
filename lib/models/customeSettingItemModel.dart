@@ -14,7 +14,7 @@ import 'package:notey/shared/widgets/CustomeSvg.dart';
 class CustomeSettingItemModel {
   String title;
   bool redColor;
-  Widget? path;
+  String? path;
   void Function()? onPressed;
 
   CustomeSettingItemModel(
@@ -26,56 +26,38 @@ List<CustomeSettingItemModel> SettingItems = [
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.typographyScreen);
       },
-      path: CustomSvgAssets(
-        path: IconAssets.setting,
-        color: ColorManager.primary,
-      ),
+      path: IconAssets.setting,
       title: "Typography"),
   CustomeSettingItemModel(
       onPressed: () {
         sl<SettingProvider>().languageSheet(sl<HomeProvider>().ScaffoldKeySheet);
 // sl<Provider>(). getAddressProvider();
       },
-      path: CustomSvgAssets(
-        path: IconAssets.language,
-        color: ColorManager.primary,
-      ),
+      path:IconAssets.language,
       title: "Language"),
   CustomeSettingItemModel(
       onPressed: () {
         // sl<NavigationService>().navigateTo(terms);
       },
-      path: CustomSvgAssets(
-        path: IconAssets.privacy,
-        color: ColorManager.primary,
-      ),
+      path: IconAssets.privacy,
       title: "Privacy"),
   CustomeSettingItemModel(
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.helpCenter);
       },
-      path: CustomSvgAssets(
-        path: IconAssets.help,
-        color: ColorManager.primary,
-      ),
+      path:IconAssets.help,
       title: "Help center"),
   CustomeSettingItemModel(
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.contactus);
       },
-      path: CustomSvgAssets(
-        path: IconAssets.profile,
-        color: ColorManager.primary,
-      ),
+      path: IconAssets.profile,
       title: "Contact Us"),
   CustomeSettingItemModel(
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.contactus);
       },
-      path: CustomSvgAssets(
-        path: IconAssets.dangerCircle,
-        color: ColorManager.primary,
-      ),
+      path: IconAssets.dangerCircle,
       title: "Abouts"),
   CustomeSettingItemModel(
     redColor: sl<SharedLocal>().getUser().token != "" ? true : false,
@@ -117,12 +99,15 @@ List<CustomeSettingItemModel> SettingItems = [
         );
       }
     },
-    path: CustomSvgAssets(
-      path: IconAssets.logout,
-      color: sl<SharedLocal>().getUser().token != ""
-          ? ColorManager.red
-          : ColorManager.primary,
-    ),
+    path: IconAssets.logout,
+
+    // CustomSvgAssets(
+    //   path: IconAssets.logout,
+    //   color:
+    //   sl<SharedLocal>().getUser().token != ""
+    //       ? ColorManager.red
+    //       : ColorManager.primary,
+    // ),
     title: sl<SharedLocal>().getUser().token != "" ? 'Logout' : 'Login',
   ),
 ];

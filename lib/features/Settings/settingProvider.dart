@@ -14,12 +14,24 @@ import 'package:notey/utils/appConfig.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingProvider extends ChangeNotifier {
-
-
   int languageValue = 0;
   double textSize = 5;
   List<ContactUsData> contactUsData = [];
-
+  int colorIndex = 0;
+  List<List<Color>> CCC = [
+    [
+      ColorManager.primary2,
+      ColorManager.secondery,
+    ],
+    [
+      ColorManager.secondery,
+      ColorManager.primary2,
+    ],
+    [ColorManager.starYellow, ColorManager.darkGrey],
+    [ColorManager.red, ColorManager.darkGrey],
+    [ColorManager.secondery, ColorManager.lightGrey],
+    [ColorManager.lightPink, ColorManager.primaryBlack],
+  ];
 
   // ------------------ Logout ------------------
 
@@ -29,15 +41,11 @@ class SettingProvider extends ChangeNotifier {
       sl<SharedLocal>().removeUser();
       sl<NavigationService>().navigateToAndRemove(Routes.login);
       // sl<SettingProvider>().clearUserData();
-      AppConfig.showSnakBar("${res.message}",Success: true);
-
-    } on DioError catch(e){
+      AppConfig.showSnakBar("${res.message}", Success: true);
+    } on DioError catch (e) {
       AppConfig().showException(e);
-
     }
-
   }
-
 
   // ------------------ Change Language ------------------
 
@@ -46,7 +54,6 @@ class SettingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   // ------------------ Change Note Text Size ------------------
 
   changeSize(double size) {
@@ -54,9 +61,16 @@ class SettingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ------------------ Change Note ColorIndex  ------------------
+
+  changeIndexColor(int index) {
+    colorIndex = index;
+    notifyListeners();
+  }
+
   // ------------------ Bottom Language Sheet ------------------
 
-  void languageSheet(GlobalKey?  ScaffoldKeySheet) {
+  void languageSheet(GlobalKey? ScaffoldKeySheet) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -67,17 +81,14 @@ class SettingProvider extends ChangeNotifier {
     );
   }
 
-
   // ------------------ Get Contact Data ------------------
 
   void getContactUsProvider() async {
     ContactUs response = await sl<SettingRepository>().getContactUs();
-      contactUsData = response.data!.contactUsData!;
-      contactUsData.forEach((element) => ("${element.id} -${element.value}"));
-      notifyListeners();
+    contactUsData = response.data!.contactUsData!;
+    contactUsData.forEach((element) => ("${element.id} -${element.value}"));
+    notifyListeners();
   }
-
-
 
   // ------------------ Lunch URL ------------------
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notey/features/Home/homeScreen.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
@@ -37,23 +38,96 @@ class TypographyScreen extends StatelessWidget {
                   "Colors",
                   style: Theme.of(context).textTheme.headline2,
                 ),
+                GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(
+
+                      childAspectRatio: 2,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12,
+                      crossAxisCount: 5
+
+                  ),
+                  itemCount: value.CCC.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder:
+                      (BuildContext context, int index) {
+                    return
+                      InkWell(
+                        onTap: (){
+                          value.changeIndexColor(index);
+                        },
+                        child: Container(
+                          width: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            gradient: LinearGradient(
+                              colors: value.CCC[index],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                          ),
+                        ),
+                      );
+                  },
+                ),
+                // Wrap(
+                //   spacing: 10,
+                //
+                //   children: value.CCC.forEach((element) { })
+
+                  // [
+                  //   InkWell(
+                  //     onTap: (){
+                  //
+                  //     },
+                  //     child: Chip(
+                  //       backgroundColor: ColorManager.darkGrey,
+                  //       label: Container(
+                  //         width: 50,
+                  //         decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(10.r),
+                  //           gradient: LinearGradient(
+                  //             colors: [
+                  //               ColorManager.secondery,
+                  //               ColorManager.primary2,
+                  //             ],
+                  //             begin: Alignment.centerLeft,
+                  //             end: Alignment.centerRight,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   Chip(
+                  //     label: Text("wtwwdasdo"),
+                  //   ),
+                  //   Chip(
+                  //     label: Text("w"),
+                  //   ),
+                  //   Chip(
+                  //     label: Text("ew"),
+                  //   ),
+                  //   Chip(
+                  //     label: Text("wsssss"),
+                  //   ),
+                  //   Chip(
+                  //     label: Text("sdaasdasd"),
+                  //   ),
+                  // ],
+                // ),
                 SizedBox(
                   height: 20,
                 ),
                 Row(
                   children: [
                     Text(
-                      "Fonts -  size : ${10* sl<SettingProvider>().textSize}",
+                      "Fonts -  size : ${10 * sl<SettingProvider>().textSize}",
                       style: Theme.of(context).textTheme.headline2,
                     ),
-
                   ],
                 ),
-                Text(
-                  "Fonts -  size",
-                  style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 50),
-                ),
-
                 SizedBox(
                   height: 20,
                 ),
@@ -70,11 +144,9 @@ class TypographyScreen extends StatelessWidget {
                             blurRadius: 10)
                       ]),
                   child: new Slider(
-
                     value: value.textSize,
                     activeColor: Colors.white,
                     inactiveColor: Colors.white,
-
                     onChanged: (double s) => value.changeSize(s),
                     divisions: 10,
                     min: 1.0,
