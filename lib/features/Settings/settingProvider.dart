@@ -84,6 +84,7 @@ class SettingProvider extends ChangeNotifier {
   void getContactUsProvider() async {
     ContactUs response = await sl<SettingRepository>().getContactUs();
     contactUsData = response.data!.contactUsData!;
+    notifyListeners();
     contactUsData.forEach((element) => ("${element.id} -${element.value}"));
     notifyListeners();
   }
