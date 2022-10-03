@@ -148,7 +148,7 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
                     const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
                     child: RadioListTile(
 
-                      activeColor: ColorManager.primary,
+                      activeColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
 
                       toggleable: false,
                       value: index,

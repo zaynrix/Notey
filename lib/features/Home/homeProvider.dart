@@ -9,10 +9,9 @@ import 'package:notey/repository/home_repo/task_repo.dart';
 import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
 
 class HomeProvider extends ChangeNotifier {
-
-
   int? id = 0;
-  bool? init ;
+  bool? init;
+
   bool loading = false;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -22,11 +21,10 @@ class HomeProvider extends ChangeNotifier {
 
   List<Data>? tasks = [];
 
-
   // ------------------ Get Tasks ------------------
 
   Future getHome() async {
-      init = false;
+    init = false;
 
     print("This getHome");
     try {
@@ -49,8 +47,8 @@ class HomeProvider extends ChangeNotifier {
 
   Future addTask() async {
     if (formKey.currentState!.validate()) {
-    loading = true;
-    notifyListeners();
+      loading = true;
+      notifyListeners();
       try {
         TaskModel taskModel =
             await sl<HomeRepository>().addTask(noteTitle.text);

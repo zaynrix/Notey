@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/assets_manager.dart';
 import 'package:notey/resources/color_manager.dart';
@@ -62,10 +64,7 @@ class Signup extends StatelessWidget {
                               .copyWith(
                                   fontSize: FontSize.s40.sp,
                                   fontWeight: FontWeightManager.semiBold),
-                          colors: const [
-                            ColorManager.secondery,
-                            ColorManager.primary,
-                          ],
+                          colors: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex]
                         ),
                       ],
                     ),
@@ -81,7 +80,7 @@ class Signup extends StatelessWidget {
                     CustomTextFiled(
                       prefixIcon: CustomSvgAssets(
                         path: IconAssets.profile,
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                       ),
                       hintText: 'Fullname',
                       keyboardType: TextInputType.emailAddress,
@@ -98,7 +97,7 @@ class Signup extends StatelessWidget {
                     CustomTextFiled(
                       prefixIcon: CustomSvgAssets(
                         path: IconAssets.email,
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                       ),
                       hintText: 'Email',
                       keyboardType: TextInputType.emailAddress,
@@ -129,7 +128,7 @@ class Signup extends StatelessWidget {
                             isExpanded: true,
                             icon: Icon(
                               Icons.keyboard_arrow_down_outlined,
-                              color: ColorManager.primary,
+                              color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                             ),
                             underline: Container(),
                             hint: Text(
@@ -151,7 +150,7 @@ class Signup extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle2!
-                                      .copyWith(color: ColorManager.primary),
+                                      .copyWith(color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0]),
                                 ),
                                 value: location,
                               );
@@ -174,11 +173,11 @@ class Signup extends StatelessWidget {
                     ),
                     CustomTextFiled(
                       suffixIcon: CustomSvgAssets(
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.hide,
                       ),
                       prefixIcon: CustomSvgAssets(
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.lock,
                       ),
                       hintText: 'password',
@@ -196,11 +195,11 @@ class Signup extends StatelessWidget {
                     // 059
                     CustomTextFiled(
                       suffixIcon: CustomSvgAssets(
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.hide,
                       ),
                       prefixIcon: CustomSvgAssets(
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.lock,
                       ),
                       hintText: 'ConfirmPassword',
@@ -227,7 +226,7 @@ class Signup extends StatelessWidget {
                                 unselectedWidgetColor: const Color(0xFF667085)),
                             child: Checkbox(
                               value: peovider.rememberMe,
-                              checkColor: ColorManager.primary,
+                              checkColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                               activeColor: ColorManager.secondryBlack,
                               onChanged: (value) {
                                 peovider.remember(value!);
@@ -276,7 +275,7 @@ class Signup extends StatelessWidget {
                                       .textTheme
                                       .subtitle2!
                                       .copyWith(
-                                          color: ColorManager.primary,
+                                          color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                                           fontWeight:
                                               FontWeightManager.semiBold),
                                 ),

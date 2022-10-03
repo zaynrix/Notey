@@ -7,6 +7,8 @@ class SharedLocal {
 
   SharedLocal({required this.sharedPreferences});
 
+  // ---------- User Information ----------
+
   Future<bool> setUser(User.Object user) async {
     String userJson = jsonEncode(user);
     return await sharedPreferences.setString(
@@ -30,6 +32,12 @@ class SharedLocal {
         token: null);
   }
 
+  void removeUser() {
+    sharedPreferences.remove(SharedPrefsConstant.USER);
+  }
+
+  // ---------- Email OTP ----------
+
   Future<bool> setSignUpTempo(String emailUptempo) async {
     String userJson = jsonEncode(emailUptempo);
     return await sharedPreferences.setString(
@@ -47,34 +55,54 @@ class SharedLocal {
     return null;
   }
 
-  void removeUser() {
-    sharedPreferences.remove(SharedPrefsConstant.USER);
-  }
-
+  // ---------- On boarding Show ----------
   bool get firstIntro =>
       sharedPreferences.getBool(SharedPrefsConstant.firstIntroKey) ?? false;
-
-  int get getIndexLang =>
-      sharedPreferences.getInt(SharedPrefsConstant.langIndex) ?? 1;
-
-  int get geCode =>
-      sharedPreferences.getInt(SharedPrefsConstant.code) ?? 0000;
-
-  String get getLanguage =>
-      sharedPreferences.getString(SharedPrefsConstant.langCode) ?? "en";
 
   set firstIntro(bool value) {
     sharedPreferences.setBool(SharedPrefsConstant.firstIntroKey, value);
   }
-  set setCode(int code) {
-    sharedPreferences.setInt(SharedPrefsConstant.code, code);
-  }
+
+  // ---------- Language  ----------
+
+  int get getIndexLang =>
+      sharedPreferences.getInt(SharedPrefsConstant.langIndex) ?? 1;
+
+  String get getLanguage =>
+      sharedPreferences.getString(SharedPrefsConstant.langCode) ?? "en";
+
   set setLanguage(String langCode) {
     sharedPreferences.setString(SharedPrefsConstant.langCode, langCode);
   }
 
   set setLanguageIndex(int langIndex) {
     sharedPreferences.setInt(SharedPrefsConstant.langIndex, langIndex);
+  }
+
+  // ---------- Color Index ----------
+
+  int get getColorIndex =>
+      sharedPreferences.getInt(SharedPrefsConstant.colorIndexKey) ?? 0;
+
+  set setColorIndex(int colorIndex) {
+    sharedPreferences.setInt(SharedPrefsConstant.colorIndexKey, colorIndex);
+  }
+
+  // ---------- Font Size ----------
+
+  double get getFontSize =>
+      sharedPreferences.getDouble(SharedPrefsConstant.fontSizeKey) ?? 10.0;
+
+  set setFontSize(double fontSize) {
+    sharedPreferences.setDouble(SharedPrefsConstant.fontSizeKey, fontSize);
+  }
+
+  // ---------- OTP Code  ----------
+
+  int get geCode => sharedPreferences.getInt(SharedPrefsConstant.code) ?? 0000;
+
+  set setCode(int code) {
+    sharedPreferences.setInt(SharedPrefsConstant.code, code);
   }
 }
 
@@ -83,6 +111,8 @@ class SharedPrefsConstant {
   static const String phoneUptempo = 'signUpphone';
   static const String langCode = 'langCode';
   static const String langIndex = 'langIndex';
+  static const String colorIndexKey = 'colorIndex';
+  static const String fontSizeKey = 'fontSize';
   static const String TOKEN = 'token';
   static const String firstIntroKey = "firstIntro";
   static const String code = "code";

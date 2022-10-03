@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:provider/provider.dart';
 import 'package:notey/routing/routes.dart';
 import 'package:notey/interceptors/di.dart';
@@ -20,114 +21,114 @@ import 'package:notey/shared/skeletonWidget/ShimmerHelper.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen() {
+    sl<HomeProvider>().getHome();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<HomeProvider,SettingProvider>(
-      builder: (context, value,v2, child) => Scaffold(
-        key: value.ScaffoldKeySheet,
-        floatingActionButton: FloatingActionButton(
-          elevation: 16,
-          child: Icon(Icons.add),
-          backgroundColor: ColorManager.darkGrey,
-          onPressed: () {
-            value.languageSheet(value.ScaffoldKeySheet);
-          },
-        ),
-        backgroundColor: ColorManager.backgroundColor,
-        appBar: CustomAppBar(
-          actions: [
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                    color: ColorManager.primaryBlack,
-                    borderRadius: BorderRadius.circular(15)),
-                child: Padding(
-                  padding: EdgeInsets.all(16.0.w),
-                  child: CustomSvgAssets(
-                    path: IconAssets.search,
-                    color: v2.CCC[v2.colorIndex].first,
+    return Consumer2<HomeProvider, SettingProvider>(
+        builder: (context, value, v2, child) {
+      return Scaffold(
+          key: value.ScaffoldKeySheet,
+          floatingActionButton: FloatingActionButton(
+            elevation: 16,
+            child: Icon(Icons.add),
+            backgroundColor: ColorManager.darkGrey,
+            onPressed: () {
+              value.languageSheet(value.ScaffoldKeySheet);
+            },
+          ),
+          backgroundColor: ColorManager.backgroundColor,
+          appBar: CustomAppBar(
+            actions: [
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: ColorManager.primaryBlack,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0.w),
+                    child: CustomSvgAssets(
+                      path: IconAssets.search,
+                      color: v2.CCC[sl<SharedLocal>().getColorIndex].first,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25.w),
-              child: GestureDetector(
-                  onTap: () {
-                    sl<NavigationService>().navigateTo(Routes.setting);
-                  },
-                  child: Image.asset(
-                    ImageAssets.splashLogoPng,
-                    // width: MediaQuery.of(context).size.width * 0.5
-                  )),
-            ),
-          ],
-          backgroundColor: ColorManager.parent,
-          title: "${AppStrings().note}",
-        ),
-        body:   Provider.of<InternetConnectionStatus>(context) ==
-            InternetConnectionStatus.disconnected
-             ?
-        NetworkDisconnected(onPress: () {
-
-        }):
-            RefreshIndicator(
-              onRefresh: () async {
-                value.refresh();
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: value.init == false && value.tasks!.length == 0
-                    ? SingleChildScrollView(
-                        child: buildListShimmer(item_count: 10),
-                      )
-                    : value.tasks!.length > 0
-                        ? RefreshIndicator(
-                            onRefresh: () async {
-                              value.refresh();
-                            },
-                            child: ListView(
-                              children: [
-                                GroupedListView<Data, dynamic>(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  order: GroupedListOrder.DESC,
-                                  elements: value.tasks!,
-                                  groupBy: (element) =>
-                                      element.createdAt!.split("T")[0],
-                                  groupHeaderBuilder: (Data value) => Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "${value.createdAt!.split("T")[0]}",
-                                      style: TextStyle(
-                                          color: ColorManager.lightGrey,
-                                          fontSize: FontSize.s16),
-                                    ),
-                                  ),
-                                  itemBuilder: (c, element) {
-                                    return noteCard(
-                                      scaffoldKeySheet: value.ScaffoldKeySheet,
-                                      stop: true,
-                                      element: element,
-                                    );
-                                  },
-                                )
-                              ],
-                            ),
-                          )
-                        : EmptyScreen(
-                            path: ImageAssets.noNote,
-                            title: AppStrings().noNotes,
-                            subtitle: AppStrings().subNoNotes,
-                          ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                child: GestureDetector(
+                    onTap: () {
+                      sl<NavigationService>().navigateTo(Routes.setting);
+                    },
+                    child: Image.asset(
+                      ImageAssets.splashLogoPng,
+                      // width: MediaQuery.of(context).size.width * 0.5
+                    )),
               ),
-
-
-        )
-      )
-    );
+            ],
+            backgroundColor: ColorManager.parent,
+            title: "${AppStrings().note}",
+          ),
+          body: Provider.of<InternetConnectionStatus>(context) ==
+                  InternetConnectionStatus.disconnected
+              ? NetworkDisconnected(onPress: () {})
+              : RefreshIndicator(
+                  onRefresh: () async {
+                    value.refresh();
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: value.init == false && value.tasks!.length == 0
+                        ? SingleChildScrollView(
+                            child: buildListShimmer(item_count: 10),
+                          )
+                        : value.tasks!.length > 0
+                            ? RefreshIndicator(
+                                onRefresh: () async {
+                                  value.refresh();
+                                },
+                                child: ListView(
+                                  children: [
+                                    GroupedListView<Data, dynamic>(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      order: GroupedListOrder.DESC,
+                                      elements: value.tasks!,
+                                      groupBy: (element) =>
+                                          element.createdAt!.split("T")[0],
+                                      groupHeaderBuilder: (Data value) =>
+                                          Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "${value.createdAt!.split("T")[0]}",
+                                          style: TextStyle(
+                                              color: ColorManager.lightGrey,
+                                              fontSize: FontSize.s16),
+                                        ),
+                                      ),
+                                      itemBuilder: (c, element) {
+                                        return noteCard(
+                                          scaffoldKeySheet:
+                                              value.ScaffoldKeySheet,
+                                          stop: true,
+                                          element: element,
+                                        );
+                                      },
+                                    )
+                                  ],
+                                ),
+                              )
+                            : EmptyScreen(
+                                path: ImageAssets.noNote,
+                                title: AppStrings().noNotes,
+                                subtitle: AppStrings().subNoNotes,
+                              ),
+                  ),
+                ));
+    });
   }
 }
 
@@ -211,7 +212,7 @@ class noteCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
               gradient: LinearGradient(
-                colors: value.CCC[value.colorIndex],
+                colors: value.CCC[sl<SharedLocal>().getColorIndex],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -221,7 +222,7 @@ class noteCard extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline1!
-                    .copyWith(fontSize: 12 * sl<SettingProvider>().textSize)),
+                    .copyWith(fontSize: 12.0 * sl<SharedLocal>().getFontSize)),
           ),
         ),
       ),

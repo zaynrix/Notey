@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/color_manager.dart';
@@ -50,7 +51,7 @@ class CustomeCTAButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           gradient: LinearGradient(
-            colors: sl<SettingProvider>().CCC[sl<SettingProvider>().colorIndex]
+            colors: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex]
           ),
           borderRadius: BorderRadius.circular(6.r),
         ),

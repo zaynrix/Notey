@@ -3,6 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/assets_manager.dart';
 import 'package:notey/resources/color_manager.dart';
@@ -34,7 +35,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
 
       title: Text(
-        title.tr(),
+        "${title.tr()}",
         style: TextStyle(color: ColorManager.white, fontSize: FontSize.s40.sp),
       ),
       centerTitle: false,

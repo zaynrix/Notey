@@ -38,7 +38,7 @@ class CustomeSettingItem extends StatelessWidget {
             leading: CustomSvgAssets(
                 path: path2,
                 color: sl<SettingProvider>()
-                    .CCC[sl<SettingProvider>().colorIndex][0]),
+                    .CCC[sl<SharedLocal>().getColorIndex].first),
             title: Text(
               title.tr(),
               style: Theme.of(context).textTheme.bodyText1!.copyWith(

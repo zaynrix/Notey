@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/assets_manager.dart';
 import 'package:notey/resources/color_manager.dart';
@@ -55,10 +57,7 @@ class LoginScreen extends StatelessWidget {
                               .copyWith(
                                   fontSize: FontSize.s40.sp,
                                   fontWeight: FontWeightManager.semiBold),
-                          colors: const [
-                            ColorManager.secondery,
-                            ColorManager.primary,
-                          ],
+                          colors: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex]
                         ),
                       ],
                     ),
@@ -74,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     CustomTextFiled(
                       prefixIcon: CustomSvgAssets(
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.profile,
                       ),
                       hintText: 'Email',
@@ -97,14 +96,14 @@ class LoginScreen extends StatelessWidget {
                           value.visibility();
                         },
                         child: CustomSvgAssets(
-                          color: ColorManager.primary,
+                          color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                           path: value.isObscure
                               ? IconAssets.hide
                               : IconAssets.show,
                         ),
                       ),
                       prefixIcon: CustomSvgAssets(
-                        color: ColorManager.primary,
+                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.lock,
                       ),
                       hintText: 'password',
@@ -174,7 +173,7 @@ class LoginScreen extends StatelessWidget {
                                       .subtitle2!
                                       .copyWith(
                                           decoration: TextDecoration.underline,
-                                          color: ColorManager.primary,
+                                          color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                                           fontWeight:
                                               FontWeightManager.semiBold),
                                 ),

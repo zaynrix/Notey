@@ -18,19 +18,14 @@ class SettingProvider extends ChangeNotifier {
   double textSize = 5;
   List<ContactUsData> contactUsData = [];
   int colorIndex = 0;
+
   List<List<Color>> CCC = [
-    [
-      ColorManager.primary2,
-      ColorManager.secondery,
-    ],
-    [
-      ColorManager.secondery,
-      ColorManager.primary2,
-    ],
+
+    [ColorManager.secondery, ColorManager.primary2,],
     [ColorManager.starYellow, ColorManager.darkGrey],
     [ColorManager.red, ColorManager.darkGrey],
     [ColorManager.secondery, ColorManager.lightGrey],
-    [ColorManager.lightPink, ColorManager.primaryBlack],
+    [ColorManager.secondryBlack, ColorManager.strokSuger],
   ];
 
   // ------------------ Logout ------------------
@@ -58,6 +53,8 @@ class SettingProvider extends ChangeNotifier {
 
   changeSize(double size) {
     textSize = size;
+    sl<SharedLocal>().setFontSize = size;
+
     notifyListeners();
   }
 
@@ -65,6 +62,7 @@ class SettingProvider extends ChangeNotifier {
 
   changeIndexColor(int index) {
     colorIndex = index;
+    sl<SharedLocal>().setColorIndex = index;
     notifyListeners();
   }
 

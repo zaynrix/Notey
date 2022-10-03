@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/features/Home/homeScreen.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
@@ -40,83 +41,39 @@ class TypographyScreen extends StatelessWidget {
                 ),
                 GridView.builder(
                   shrinkWrap: true,
-                  gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(
-
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 2,
                       mainAxisSpacing: 12,
                       crossAxisSpacing: 12,
-                      crossAxisCount: 5
-
-                  ),
+                      crossAxisCount: 5),
                   itemCount: value.CCC.length,
                   physics: NeverScrollableScrollPhysics(),
-                  itemBuilder:
-                      (BuildContext context, int index) {
-                    return
-                      InkWell(
-                        onTap: (){
-                          value.changeIndexColor(index);
-                        },
-                        child: Container(
-                          width: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            gradient: LinearGradient(
-                              colors: value.CCC[index],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () {
+                        value.changeIndexColor(index);
+                      },
+                      child: Container(
+                        width: 50,
+                        decoration: BoxDecoration(
+                          // border: Border.all(
+                          //
+                          //     color:value.CCC[index]==sl<SharedLocal>().getColorIndex ?  ColorManager.primary : ColorManager.parent),
+                          border: Border.all(
+                            color: sl<SharedLocal>().getColorIndex == index ? ColorManager.white : ColorManager.parent, //                   <--- border color
+                            width: 3.0,
+                          ),
+                          borderRadius: BorderRadius.circular(10.r),
+                          gradient: LinearGradient(
+                            colors: value.CCC[index],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
                           ),
                         ),
-                      );
+                      ),
+                    );
                   },
                 ),
-                // Wrap(
-                //   spacing: 10,
-                //
-                //   children: value.CCC.forEach((element) { })
-
-                  // [
-                  //   InkWell(
-                  //     onTap: (){
-                  //
-                  //     },
-                  //     child: Chip(
-                  //       backgroundColor: ColorManager.darkGrey,
-                  //       label: Container(
-                  //         width: 50,
-                  //         decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(10.r),
-                  //           gradient: LinearGradient(
-                  //             colors: [
-                  //               ColorManager.secondery,
-                  //               ColorManager.primary2,
-                  //             ],
-                  //             begin: Alignment.centerLeft,
-                  //             end: Alignment.centerRight,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   Chip(
-                  //     label: Text("wtwwdasdo"),
-                  //   ),
-                  //   Chip(
-                  //     label: Text("w"),
-                  //   ),
-                  //   Chip(
-                  //     label: Text("ew"),
-                  //   ),
-                  //   Chip(
-                  //     label: Text("wsssss"),
-                  //   ),
-                  //   Chip(
-                  //     label: Text("sdaasdasd"),
-                  //   ),
-                  // ],
-                // ),
                 SizedBox(
                   height: 20,
                 ),
@@ -135,6 +92,7 @@ class TypographyScreen extends StatelessWidget {
                   margin: EdgeInsets.only(right: 10),
                   decoration: new BoxDecoration(
                       color: ColorManager.black,
+                      // border: ,
                       borderRadius:
                           new BorderRadius.all(new Radius.circular(5.0)),
                       boxShadow: [
@@ -144,7 +102,7 @@ class TypographyScreen extends StatelessWidget {
                             blurRadius: 10)
                       ]),
                   child: new Slider(
-                    value: value.textSize,
+                    value: sl<SharedLocal>().getFontSize,
                     activeColor: Colors.white,
                     inactiveColor: Colors.white,
                     onChanged: (double s) => value.changeSize(s),
