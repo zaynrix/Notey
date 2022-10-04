@@ -57,8 +57,8 @@ class CustomeCTAButton extends StatelessWidget {
         ),
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.transparent,
-              shadowColor: Colors.transparent,
+              primary: ColorManager.parent,
+              // shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(
                   side: haveBorder
                       ? BorderSide(

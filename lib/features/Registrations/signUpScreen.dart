@@ -39,7 +39,7 @@ class Signup extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 85.h,
+                      height: 60.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -279,6 +279,9 @@ class Signup extends StatelessWidget {
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: 12.h,
                     ),
                   ],
                 ),

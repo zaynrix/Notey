@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:notey/features/Settings/settingProvider.dart';
-import 'package:notey/utils/appConfig.dart';
 import 'package:provider/provider.dart';
 import 'package:notey/routing/routes.dart';
 import 'package:notey/routing/router.dart';
 import 'package:notey/interceptors/di.dart';
+import 'package:notey/utils/appConfig.dart';
 import 'package:notey/routing/navigation.dart';
 import 'package:notey/resources/theme_manager.dart';
 import 'package:notey/features/Home/homeProvider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
