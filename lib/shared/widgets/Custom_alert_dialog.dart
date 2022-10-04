@@ -19,7 +19,6 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: backgroundColor,
-      // contentPadding:  const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       insetPadding: const EdgeInsets.symmetric(vertical: 50),
       content: Container(
         width: 300,

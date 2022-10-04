@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notey/features/Home/homeProvider.dart';
 import 'package:notey/features/Home/homeScreen.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/features/Registrations/createNewPasswordScreen.dart';
@@ -7,14 +6,12 @@ import 'package:notey/features/Registrations/forgetPasswordScreen.dart';
 import 'package:notey/features/Registrations/loginScreen.dart';
 import 'package:notey/features/Registrations/signUpScreen.dart';
 import 'package:notey/features/Settings/contactUsScreen.dart';
-import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/features/Settings/settingScreen.dart';
 import 'package:notey/features/Settings/typography.dart';
 import 'package:notey/features/onBoardingScreen.dart';
 import 'package:notey/features/splashScreen.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/routing/routes.dart';
-import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
 import 'package:notey/utils/appConfig.dart';
 import 'package:provider/provider.dart';
 

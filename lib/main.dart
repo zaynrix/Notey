@@ -1,9 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
-import 'package:notey/interceptors/connect.dart';
 import 'package:notey/utils/appConfig.dart';
 import 'package:provider/provider.dart';
 import 'package:notey/routing/routes.dart';
@@ -14,7 +12,6 @@ import 'package:notey/resources/theme_manager.dart';
 import 'package:notey/features/Home/homeProvider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notey/features/Registrations/auth_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,36 +20,12 @@ void main() async {
   await init();
   sl<AppConfig>().loadData();
 
-  // Create customized instance which can be registered via dependency injection
-  // final InternetConnectionChecker customInstance =
-  // createInstance(
-  //   checkTimeout: const Duration(seconds: 1),
-  //   checkInterval: const Duration(seconds: 1),
-  // );
-
-  // Check internet connection with created instance
-  // await execute(customInstance);
-
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark),
   );
 
-  // c. = Duration(seconds: 1);
-  // internetConnectionChecker. = Duration(seconds: 1);
-  // internetConnectionChecker.onStatusChange.listen((status) {
-  //   add(OnInternetConnectionChanged(
-  //       status == InternetConnectionStatus.disconnected ? false : true));
-  // });
-
-  // final InternetConnectionChecker customInstance =
-  // InternetConnectionChecker.crea(
-  //   checkTimeout: const Duration(seconds: 1),
-  //   checkInterval: const Duration(seconds: 1),
-  // );
-
-  // Check internet connection with created instance
   runApp(
     EasyLocalization(
       supportedLocales: const [
@@ -65,7 +38,6 @@ void main() async {
       child: MyApp(),
     ),
   );
- 
 }
 
 class MyApp extends StatelessWidget {
@@ -103,7 +75,6 @@ class MyApp extends StatelessWidget {
             theme: getApplicationTheme(),
             navigatorKey: sl<NavigationService>().navigatorKey,
             initialRoute: Routes.splash,
-
             onGenerateRoute: RouterX.generateRoute,
           ),
         );

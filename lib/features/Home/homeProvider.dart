@@ -26,16 +26,13 @@ class HomeProvider extends ChangeNotifier {
   Future getHome() async {
     init = false;
 
-    print("This getHome");
     try {
-      // notifyListeners();
       TaskModel taskModel = await sl<HomeRepository>().getTasks();
       tasks = taskModel.data;
       notifyListeners();
       if (tasks!.isEmpty) {
         init = true;
       }
-      print("init $init");
     } on DioError catch (e) {
       init = false;
       notifyListeners();

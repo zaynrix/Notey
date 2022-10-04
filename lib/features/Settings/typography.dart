@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notey/api/local/local_pref.dart';
@@ -13,7 +14,6 @@ import 'package:provider/provider.dart';
 class TypographyScreen extends StatelessWidget {
   TypographyScreen({Key? key}) : super(key: key);
 
-  // double _value = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class TypographyScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "Colors",
+                  "Colors".tr(),
                   style: Theme.of(context).textTheme.headline2,
                 ),
                 SizedBox(
@@ -80,7 +80,7 @@ class TypographyScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Fonts size : ${10 * sl<SharedLocal>().getFontSize}",
+                      "Fonts size :".tr()+" ${10 * sl<SharedLocal>().getFontSize}",
                       style: Theme.of(context).textTheme.headline2,
                     ),
                   ],

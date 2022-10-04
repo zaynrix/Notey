@@ -1,17 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/features/Home/homeProvider.dart';
-import 'package:notey/interceptors/di.dart';
-import 'package:notey/models/contactUsModel.dart';
-import 'package:notey/models/loginModel.dart';
-import 'package:notey/repository/setting_repo/srtting_repo.dart';
-import 'package:notey/resources/color_manager.dart';
-import 'package:notey/routing/navigation.dart';
 import 'package:notey/routing/routes.dart';
-import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
+import 'package:notey/interceptors/di.dart';
 import 'package:notey/utils/appConfig.dart';
+import 'package:notey/models/loginModel.dart';
+import 'package:notey/routing/navigation.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/models/contactUsModel.dart';
+import 'package:notey/resources/color_manager.dart';
+import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
+import 'package:notey/repository/setting_repo/srtting_repo.dart';
 
 class SettingProvider extends ChangeNotifier {
   int languageValue = 0;

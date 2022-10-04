@@ -1,5 +1,6 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:notey/api/local/local_pref.dart';
 import 'package:provider/provider.dart';
 import 'package:notey/routing/routes.dart';
 import 'package:notey/interceptors/di.dart';
@@ -7,6 +8,7 @@ import 'package:notey/models/taskModel.dart';
 import 'package:notey/routing/navigation.dart';
 import 'package:notey/shared/pages/empty.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/resources/font_manager.dart';
 import 'package:notey/shared/pages/reConnect.dart';
 import 'package:notey/resources/color_manager.dart';
@@ -28,8 +30,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer2<HomeProvider, SettingProvider>(
-        builder: (context, value, v2, child) {
-      return Scaffold(
+      builder: (context, value, v2, child) {
+        return Scaffold(
           key: value.ScaffoldKeySheet,
           floatingActionButton: FloatingActionButton(
             elevation: 16,
@@ -42,31 +44,28 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: ColorManager.backgroundColor,
           appBar: CustomAppBar(
             actions: [
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: ColorManager.primaryBlack,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0.w),
-                    child: CustomSvgAssets(
-                      path: IconAssets.search,
-                      color: v2.CCC[sl<SharedLocal>().getColorIndex].first,
-                    ),
-                  ),
-                ),
+              Image.asset(
+                ImageAssets.splashLogoPng,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: GestureDetector(
-                    onTap: () {
-                      sl<NavigationService>().navigateTo(Routes.setting);
-                    },
-                    child: Image.asset(
-                      ImageAssets.splashLogoPng,
-                      // width: MediaQuery.of(context).size.width * 0.5
-                    )),
+                  onTap: () {
+                    sl<NavigationService>().navigateTo(Routes.setting);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: ColorManager.primaryBlack,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0.w),
+                      child: CustomSvgAssets(
+                        path: IconAssets.setting,
+                        color: v2.CCC[sl<SharedLocal>().getColorIndex].first,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
             backgroundColor: ColorManager.parent,
@@ -127,8 +126,10 @@ class HomeScreen extends StatelessWidget {
                                 subtitle: AppStrings().subNoNotes,
                               ),
                   ),
-                ));
-    });
+                ),
+        );
+      },
+    );
   }
 }
 
@@ -180,24 +181,17 @@ class noteCard extends StatelessWidget {
                               onPressed: () {
                                 data.id = element!.id;
                                 data.deleteTask();
-                                // TODO: Delete the item from DB etc..
-                                // setState(() {
-                                //   itemsList.removeAt(index);
-                                // });
+
                                 Navigator.of(context).pop();
                               },
                             ),
                           ],
                         );
                       });
-                  // return res;
                 } else {
                   data.noteTitle.text = element!.title!;
                   data.id = element!.id;
-                  print("This ${data.noteTitle.text}");
                   data.languageSheet(scaffoldKeySheet!);
-
-                  // TODO: Navigate to edit page;
                 }
                 return null;
               }

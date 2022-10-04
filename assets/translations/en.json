@@ -1,4 +1,3 @@
-
 {
   "Login": "Log in",
   "TitleBorad": "Get the Best Smartphone",
@@ -17,7 +16,6 @@
   "Sign": "Sign",
   "Up": "Up",
   "The Item Already in Cart": "The Item Already in Cart",
-
   "CreateAcc": "Create a new account!",
   "Fullname": "Full name",
   "Email": "Email",
@@ -26,7 +24,6 @@
   "Aggrement": "Agree with trams and condition.",
   "Haveanaccount": "Have an account?",
   "You Should login": "You Should login",
-
   "textRecieve": "We need to register your phone number before \\n getting srated!",
   "verifyphonenumber": "verify phone number",
   "Editphonenumber": "Edit phone number?",
@@ -86,7 +83,6 @@
   "ClearAll": "ClearAll",
   "ApplyFilter": "ApplyFilter",
   "NoData": "NoData",
-
   "Proceedcheckout": "Proceed to checkout",
   "Favorite": "Favorite",
   "NoFavoritesYet ": "No Favorites Yet \\n You can Add from Home Tab",
@@ -102,7 +98,6 @@
   "YouDonthaveanyOrderyes": "You Don't have any Order yes",
   "OrderNow": "Order Now",
   "Continuetopayment": "Continue to payment",
-
   "PaymentMethod": "Payment Method",
   "Payment": "Payment",
   "Address": "Address",
@@ -150,7 +145,6 @@
   "Ok": "Ok",
   "Your order is completed. Please check the delivery status at order tracking page.": "Your order is completed. Please check the delivery status at order tracking page.",
   "YouDonthaveanypurchess": "You Don't have any purchess",
-
   "Save": "Save",
   "My purchess": "My purchess",
   "Version": "Version",
@@ -158,10 +152,10 @@
   "Contact Us": "Contact Us",
   "Frequently Asked": "Frequently Asked",
   "Please fill this field": "Please fill this field",
-  "\uD83D\uDEA9 Please enter a valid email address.": "\uD83D\uDEA9 Please enter a valid email address.",
+  "🚩 Please enter a valid email address.": "🚩 Please enter a valid email address.",
   "Not a valid email address. Should be your@email.com": "Not a valid email address. Should be your@email.com",
   "Your password must be at least 8 symbols with number, big and small letter and special character (!@#\\$%^&*).": "Your password must be at least 8 symbols with number, big and small letter and special character (!@#\\$%^&*).",
-  "\uD83D\uDEA9 Username is too short.": "\uD83D\uDEA9 Username is too short.",
+  "🚩 Username is too short.": "🚩 Username is too short.",
   "Card is invalid": "Card is invalid",
   "You should Select an Address": "You should Select an Address",
   "Your Cart is Empty": "Your Cart is Empty",
@@ -173,15 +167,30 @@
   "empty": "Empty",
   "Not Match": "Not Match",
   "Agree with trams and condition": "Agree with trams and condition",
-
-  "\uD83D\uDEA9 Text is too short.": "\uD83D\uDEA9 Text is too short.",
-  "\uD83D\uDEA9 Password must be at least 6 characters.": "\uD83D\uDEA9 Password must be at least 6 characters.",
+  "🚩 Text is too short.": "🚩 Text is too short.",
+  "🚩 Password must be at least 6 characters.": "🚩 Password must be at least 6 characters.",
   "Explore now": "Explore now",
   "Expiry year is invalid": "Expiry year is invalid",
   "Expiry month is invalid": "Expiry month is invalid",
   "Card has expired": "Card has expired",
-  "\uD83D\uDEA9 Phone number is not valid.": "\uD83D\uDEA9 رقم الهاتف غير صالح.",
-  "\uD83D\uDEA9 MasterCard Number is not valid.": "\uD83D\uDEA9 رقم MasterCard غير صالح.",
-  "\uD83D\uDEA9 CVV is not valid.": "\uD83D\uDEA9 CVV is not valid.",
-  "Please select an item.": "Please select an item."
+  "🚩 Phone number is not valid.": "🚩 Phone number is not valid.",
+  "🚩 MasterCard Number is not valid.": "🚩 MasterCard Number is not valid.",
+  "🚩 CVV is not valid.": "🚩 CVV is not valid.",
+  "Please select an item.": "Please select an item.",
+  "Descriptions": "Description",
+  "Typography": "Typography",
+  "Type something...": "Type something...",
+  "Add": "Add",
+  "Update": "Update",
+  "Notes": "Notes",
+  "Good Morning": "Good Morning",
+  "Add Note": "Add Note",
+  "Edit Note": "Edit Note",
+  "You don't have Notes": "You don't have Notes",
+  "Create your first note !": "Create your first note !",
+  "Take Notes": "Take Notes",
+  "Not Just Texts": "Not Just Texts",
+  "Stay Organized": "Stay Organized",
+  "Fonts size :": "Fonts size :",
+  "Colors": "Colors"
 }

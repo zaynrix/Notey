@@ -16,8 +16,6 @@ class DioInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // debugPrint("::: Api Url : ${response.realUri}");
-    // debugPrint("::: Api Url : ${response.headers}");
     super.onResponse(response, handler);
   }
 

@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:notey/api/endPoints.dart';
 import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/api/remote/auth_api.dart';
 import 'package:notey/features/Home/homeProvider.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
-import 'package:notey/interceptors/cache_Interceptor.dart';
 import 'package:notey/interceptors/connect.dart';
 import 'package:notey/repository/home_repo/task_repo.dart';
 import 'package:notey/repository/setting_repo/srtting_repo.dart';
@@ -17,9 +14,7 @@ import 'package:notey/repository/user_repo/login_repo.dart';
 import 'package:notey/routing/navigation.dart';
 import 'package:notey/utils/appConfig.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'dio_interceptor.dart';
-import 'logger_interceptor.dart';
 
 final sl = GetIt.instance;
 late bool isConnected;

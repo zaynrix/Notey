@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/routing/navigation.dart';
 import 'package:notey/routing/routes.dart';
@@ -49,7 +48,6 @@ class DioExceptions implements Exception {
         return 'Bad request';
       case 401:
         if (sl<SharedLocal>().getUser().token == null) {
-          print("inside 401 Unauthorized case 401");
         } else {
           sl<SharedLocal>().removeUser();
           sl<NavigationService>().navigateToAndRemove(Routes.login);

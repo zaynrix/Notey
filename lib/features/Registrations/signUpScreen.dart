@@ -21,14 +21,9 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 import '../../shared/widgets/CustomeRoundedTextFiled.dart';
 
 class Signup extends StatelessWidget {
-  Signup(){
-    print("This is Signup");
-
-  }
 
   @override
   Widget build(BuildContext context) {
-    print("build");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
@@ -137,10 +132,8 @@ class Signup extends StatelessWidget {
                                   color: ColorManager.lightGrey,
                                   fontSize: FontSize.s16.sp),
                             ),
-                            // Not necessary for Option 1
                             value: peovider.selectedGender,
                             onChanged: (newValue) {
-                              print("This is new Value $newValue");
                               peovider.selectGender(newValue);
                             },
                             items: peovider.gender.map((location) {

@@ -9,33 +9,35 @@ import 'package:notey/resources/styles_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class CustomTextFiled extends StatelessWidget {
-   CustomTextFiled(
+  CustomTextFiled(
       {required this.onChanged,
-        this.controller,
+      this.controller,
       required this.hintText,
       required this.focuse,
       this.validator,
-        this. maxLines = 1,
+      this.maxLines = 1,
       this.obscureText = false,
       this.keyboardType,
       this.prefixIcon,
-        this.inputFormatters,
+      this.inputFormatters,
       this.textInputAction = TextInputAction.next,
       this.suffixIcon});
-   final List<TextInputFormatter>? inputFormatters;
+
+  final List<TextInputFormatter>? inputFormatters;
   final Function(String?) onChanged;
   final void Function(String) focuse;
   final String? Function(String?)? validator;
   final String hintText;
   final bool obscureText;
- final  int maxLines ;
+  final int maxLines;
+
   final TextInputType? keyboardType;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextInputAction? textInputAction;
-   TextEditingController? controller;
+  final TextEditingController? controller;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -80,7 +82,9 @@ class CustomTextFiled extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0]),
+            borderSide: BorderSide(
+                color: sl<SettingProvider>()
+                    .CCC[sl<SharedLocal>().getColorIndex][0]),
           ),
         ),
         style: const TextStyle(

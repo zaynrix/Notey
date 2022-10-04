@@ -22,10 +22,8 @@ class AppConfig extends ChangeNotifier {
   onDoneLoading() async {
     if (shared.firstIntro == true) {
       if (shared.getUser().token == null) {
-        print("In Splash App Configurations");
         sl<NavigationService>().navigateToAndRemove(Routes.login);
       } else {
-        print("this else");
         sl<HomeProvider>().getHome();
         sl<NavigationService>().navigateToAndRemove(Routes.home);
       }

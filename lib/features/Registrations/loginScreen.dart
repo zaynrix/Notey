@@ -19,9 +19,6 @@ import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class LoginScreen extends StatelessWidget {
-   LoginScreen(){
-     print("This is login");
-   }
 
   @override
   Widget build(BuildContext context) {

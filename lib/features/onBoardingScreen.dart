@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/features/Settings/settingProvider.dart';
-import 'package:notey/interceptors/di.dart';
-import 'package:notey/resources/assets_manager.dart';
-import 'package:notey/resources/color_manager.dart';
-import 'package:notey/resources/strings_manager.dart';
-import 'package:notey/routing/navigation.dart';
+import 'package:flutter/material.dart';
 import 'package:notey/routing/routes.dart';
+import 'package:notey/interceptors/di.dart';
+import 'package:notey/routing/navigation.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/resources/color_manager.dart';
+import 'package:notey/resources/assets_manager.dart';
+import 'package:notey/resources/strings_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:introduction_screen/introduction_screen.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
 
 class Introduction extends StatelessWidget {
   const Introduction({Key? key}) : super(key: key);
@@ -81,20 +81,22 @@ class Introduction extends StatelessWidget {
             ),
           ),
         ],
-        onDone: () {
-          print("Done");
-        },
+        onDone: () {},
         nextStyle: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                    side: const BorderSide(color: Colors.red)))),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+              side: const BorderSide(color: Colors.red),
+            ),
+          ),
+        ),
         showBackButton: false,
         showSkipButton: false,
         controlsMargin: const EdgeInsets.symmetric(vertical: 20),
         skip: const Icon(Icons.skip_next),
         next: CircleAvatar(
-          backgroundColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+          backgroundColor:
+              sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
           radius: 22.r,
           child: SvgPicture.asset(
             IconAssets.arrowRight,
@@ -112,7 +114,8 @@ class Introduction extends StatelessWidget {
             shape:
                 const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
             activeSize: const Size(10.0, 10.0),
-            activeColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+            activeColor:
+                sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
             color: ColorManager.lightPink,
             spacing: const EdgeInsets.symmetric(horizontal: 3.0),
             activeShape:

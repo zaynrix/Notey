@@ -1,17 +1,14 @@
 import 'package:notey/api/endPoints.dart';
 import 'package:notey/api/remote/auth_api.dart';
 import 'package:notey/interceptors/di.dart';
-import 'package:notey/models/loginModel.dart';
 import 'package:notey/models/taskModel.dart';
 
 class HomeRepository {
   Future<TaskModel> getTasks() async {
-    print("get Tasks Repo");
     final response = await sl<HttpAuth>().getData(
       url: Endpoints.tasks,
     );
     TaskModel taskModel = TaskModel.fromJson(response.data);
-    print("This is task response ${response.data}");
 
     if (taskModel.status == true) {
       return taskModel;
@@ -25,7 +22,6 @@ class HomeRepository {
       data: {"title": title}
     );
     TaskModel taskModel = TaskModel.fromJson(response.data);
-    print("This is task response ${response.data}");
 
     if (taskModel.status == true) {
       return taskModel;

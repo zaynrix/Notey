@@ -9,7 +9,6 @@ import 'package:notey/resources/assets_manager.dart';
 import 'package:notey/resources/color_manager.dart';
 import 'package:notey/routing/navigation.dart';
 import 'package:notey/routing/routes.dart';
-import 'package:notey/shared/widgets/CustomeSvg.dart';
 
 class CustomeSettingItemModel {
   String title;
@@ -37,16 +36,10 @@ List<CustomeSettingItemModel> SettingItems = [
       title: "Language"),
   CustomeSettingItemModel(
       onPressed: () {
-        // sl<NavigationService>().navigateTo(terms);
       },
       path: IconAssets.privacy,
       title: "Privacy"),
-  CustomeSettingItemModel(
-      onPressed: () {
-        sl<NavigationService>().navigateTo(Routes.helpCenter);
-      },
-      path:IconAssets.help,
-      title: "Help center"),
+
   CustomeSettingItemModel(
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.contactus);
