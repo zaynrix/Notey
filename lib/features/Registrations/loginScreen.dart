@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/features/Settings/settingProvider.dart';
-import 'package:notey/interceptors/di.dart';
-import 'package:notey/resources/assets_manager.dart';
-import 'package:notey/resources/color_manager.dart';
-import 'package:notey/resources/font_manager.dart';
-import 'package:notey/routing/navigation.dart';
+import 'package:provider/provider.dart';
 import 'package:notey/routing/routes.dart';
-import 'package:notey/shared/widgets/CustomCTAButton.dart';
-import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
-import 'package:notey/shared/widgets/CustomeSvg.dart';
 import 'package:notey/utils/appConfig.dart';
 import 'package:notey/utils/validator.dart';
-import 'package:provider/provider.dart';
+import 'package:notey/interceptors/di.dart';
+import 'package:notey/routing/navigation.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/resources/font_manager.dart';
+import 'package:notey/resources/color_manager.dart';
+import 'package:notey/resources/assets_manager.dart';
+import 'package:notey/shared/widgets/CustomeSvg.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:notey/shared/widgets/CustomCTAButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notey/features/Registrations/auth_provider.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:notey/features/Registrations/auth_provider.dart';
+import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
+
 
 class LoginScreen extends StatelessWidget {
 
