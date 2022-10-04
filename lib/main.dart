@@ -23,15 +23,6 @@ void main() async {
   await init();
   sl<AppConfig>().loadData();
 
-  // Create customized instance which can be registered via dependency injection
-  // final InternetConnectionChecker customInstance =
-  // createInstance(
-  //   checkTimeout: const Duration(seconds: 1),
-  //   checkInterval: const Duration(seconds: 1),
-  // );
-
-  // Check internet connection with created instance
-  // await execute(customInstance);
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -39,20 +30,6 @@ void main() async {
         statusBarBrightness: Brightness.dark),
   );
 
-  // c. = Duration(seconds: 1);
-  // internetConnectionChecker. = Duration(seconds: 1);
-  // internetConnectionChecker.onStatusChange.listen((status) {
-  //   add(OnInternetConnectionChanged(
-  //       status == InternetConnectionStatus.disconnected ? false : true));
-  // });
-
-  // final InternetConnectionChecker customInstance =
-  // InternetConnectionChecker.crea(
-  //   checkTimeout: const Duration(seconds: 1),
-  //   checkInterval: const Duration(seconds: 1),
-  // );
-
-  // Check internet connection with created instance
   runApp(
     EasyLocalization(
       supportedLocales: const [
@@ -89,9 +66,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider.value(
               value: sl<SettingProvider>(),
             ),
-            // ChangeNotifierProvider.value(
-            //   value: sl<Connection>(),
-            // ),
+         
           ],
           child: MaterialApp(
             localizationsDelegates: context.localizationDelegates,
