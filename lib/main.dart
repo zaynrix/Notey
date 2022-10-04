@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -66,25 +65,8 @@ void main() async {
       child: MyApp(),
     ),
   );
-  // await sl<Connection>().execute(InternetConnectionChecker());
-  // final InternetConnectionChecker customInstance = InternetConnectionChecker();
-  // customInstance.checkInterval = Duration(seconds: 1);
-  //
-  // await sl<Connection>().execute(customInstance);
+ 
 }
-// Route onGenerateRoute(RouteSettings settings) {
-//   int ncalls = 0;
-//   Widget builder_(BuildContext context) {
-//     ncalls++;
-//     print("[$ncalls] Building widget ${settings.name}");
-//     return Home(Uri.parse(settings.name));
-//   }
-
-//   return MaterialPageRoute<void>(
-//     builder: builder_, //(context) => path.builder(context, match),
-//     settings: settings,
-//   );
-// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -121,7 +103,6 @@ class MyApp extends StatelessWidget {
             theme: getApplicationTheme(),
             navigatorKey: sl<NavigationService>().navigatorKey,
             initialRoute: Routes.splash,
-            // onGenerateInitialRoutes: (initialRoute)=>[RouterX.generateRoute(RouteSettings(name:initialRoute))],
 
             onGenerateRoute: RouterX.generateRoute,
           ),
