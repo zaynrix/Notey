@@ -110,15 +110,10 @@ class Signup extends StatelessWidget {
                     CustomTextFiled(
 
                       prefixIcon: Container(
-                        // width: 80,
                         child: ButtonTheme(
                           alignedDropdown: true,
                           child: DropdownButton(
                             dropdownColor: ColorManager.darkGrey,
-                            //<-- SEE HERE
-
-                            // iconEnabledColor: ColorManager.secondryBlack,
-                            // dropdownColor: ColorManager.backgroundColor,
 
                             isExpanded: true,
                             icon: Icon(
@@ -294,31 +289,3 @@ class Signup extends StatelessWidget {
   }
 }
 
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return  Scaffold(
-//         body: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//
-//             RichText(
-//               text:  TextSpan(children: [
-//                 TextSpan(
-//                   text: 'Sign',
-//                   style: Theme.of(context).textTheme.headline2!.copyWith(color: Colors.black,fontSize: FontSize.s40.sp),),
-//                 TextSpan(
-//                   text: 'Up',
-//                   style: Theme.of(context).textTheme.headline1!.copyWith(color: Colors.green,fontSize: FontSize.s40.sp),),
-//               ]),
-//             ),
-//
-//
-//
-//             Text("Create a new account!"),
-//             Text("This is Center"),
-//           ],
-//         )
-//     );
-//   }
-// }

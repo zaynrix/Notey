@@ -32,10 +32,12 @@ class LoginScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.s tart,
+                  mainAxisSize:MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Spacer(),
+                    SizedBox(
+                      height: 60.h,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
