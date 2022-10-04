@@ -91,7 +91,7 @@ class SharedLocal {
   // ---------- Font Size ----------
 
   double get getFontSize =>
-      sharedPreferences.getDouble(SharedPrefsConstant.fontSizeKey) ?? 10.0;
+      sharedPreferences.getDouble(SharedPrefsConstant.fontSizeKey) ?? 2.0;
 
   set setFontSize(double fontSize) {
     sharedPreferences.setDouble(SharedPrefsConstant.fontSizeKey, fontSize);

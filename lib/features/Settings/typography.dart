@@ -39,6 +39,9 @@ class TypographyScreen extends StatelessWidget {
                   "Colors",
                   style: Theme.of(context).textTheme.headline2,
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 GridView.builder(
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -56,9 +59,6 @@ class TypographyScreen extends StatelessWidget {
                       child: Container(
                         width: 50,
                         decoration: BoxDecoration(
-                          // border: Border.all(
-                          //
-                          //     color:value.CCC[index]==sl<SharedLocal>().getColorIndex ?  ColorManager.primary : ColorManager.parent),
                           border: Border.all(
                             color: sl<SharedLocal>().getColorIndex == index ? ColorManager.white : ColorManager.parent, //                   <--- border color
                             width: 3.0,
@@ -80,7 +80,7 @@ class TypographyScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Fonts -  size : ${10 * sl<SettingProvider>().textSize}",
+                      "Fonts size : ${10 * sl<SharedLocal>().getFontSize}",
                       style: Theme.of(context).textTheme.headline2,
                     ),
                   ],

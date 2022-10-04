@@ -271,10 +271,12 @@ class Signup extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text: 'Login'.tr(),
+
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle2!
                                       .copyWith(
+                                      decoration: TextDecoration.underline,
                                           color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                                           fontWeight:
                                               FontWeightManager.semiBold),

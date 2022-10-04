@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
+import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/font_manager.dart';
 import 'package:notey/resources/color_manager.dart';
 import 'package:notey/resources/styles_manager.dart';
@@ -77,7 +80,7 @@ class CustomTextFiled extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            borderSide: BorderSide(color: ColorManager.primary2),
+            borderSide: BorderSide(color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0]),
           ),
         ),
         style: const TextStyle(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/assets_manager.dart';
 import 'package:notey/resources/color_manager.dart';
@@ -92,7 +94,7 @@ class Introduction extends StatelessWidget {
         controlsMargin: const EdgeInsets.symmetric(vertical: 20),
         skip: const Icon(Icons.skip_next),
         next: CircleAvatar(
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
           radius: 22.r,
           child: SvgPicture.asset(
             IconAssets.arrowRight,
@@ -110,7 +112,7 @@ class Introduction extends StatelessWidget {
             shape:
                 const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
             activeSize: const Size(10.0, 10.0),
-            activeColor: Theme.of(context).primaryColor,
+            activeColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
             color: ColorManager.lightPink,
             spacing: const EdgeInsets.symmetric(horizontal: 3.0),
             activeShape:
