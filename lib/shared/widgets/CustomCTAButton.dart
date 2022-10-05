@@ -46,53 +46,54 @@ class CustomeCTAButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        height: heighbox.h,
-        decoration: BoxDecoration(
-          color: color,
-          gradient: LinearGradient(
-              colors:
-                  sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex]),
-          borderRadius: BorderRadius.circular(6.r),
+      width: double.infinity,
+      height: heighbox.h,
+      decoration: BoxDecoration(
+        color: color,
+        gradient: LinearGradient(
+            colors: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex]),
+        borderRadius: BorderRadius.circular(6.r),
+      ),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: ColorManager.parent,
+          // shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            side: haveBorder
+                ? BorderSide(
+                    width: 1.0,
+                    color: colorBorder,
+                  )
+                : BorderSide(
+                    width: 0.0,
+                    color: ColorManager.parent,
+                  ),
+            borderRadius: BorderRadius.circular(6.r),
+          ),
         ),
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: ColorManager.parent,
-              // shadowColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                side: haveBorder
-                    ? BorderSide(
-                        width: 1.0,
-                        color: colorBorder,
-                      )
-                    : BorderSide(
-                        width: 0.0,
-                        color: ColorManager.parent,
-                      ),
-                borderRadius: BorderRadius.circular(6.r),
-              ),
-            ),
-            onPressed: onPressed,
-            child: !trigger
-                ? haveWidget
-                    ? FittedBox(
-                        child: Text(
-                          title!.tr(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .button!
-                              .copyWith(color: textColor, fontSize: fontSized),
-                        ),
-                      )
-                    : widget
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircularProgressIndicator(
-                      strokeWidth: 3,
-                      valueColor: AlwaysStoppedAnimation(Colors.white),
-                      color: ProgressColor,
+        onPressed: onPressed,
+        child: !trigger
+            ? haveWidget
+                ? FittedBox(
+                    child: Text(
+                      title!.tr(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .button!
+                          .copyWith(color: textColor, fontSize: fontSized),
                     ),
-                  )));
+                  )
+                : widget
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                  valueColor: AlwaysStoppedAnimation(Colors.white),
+                  color: ProgressColor,
+                ),
+              ),
+      ),
+    );
   }
 }
 

@@ -51,11 +51,13 @@ class HomeProvider extends ChangeNotifier {
             await sl<HomeRepository>().addTask(noteTitle.text);
         tasks!.add(taskModel.singleData!);
       } on DioError catch (e) {
+        loading = false;
+        notifyListeners();
         AppConfig().showException(e);
       }
 
       id = 0;
-      loading = false;
+
       noteTitle.clear();
       sl<NavigationService>().pop();
       notifyListeners();
@@ -65,11 +67,11 @@ class HomeProvider extends ChangeNotifier {
   // ------------------ Delete Task ------------------
 
   Future deleteTask() async {
-    loading = true;
+    // loading = true;
     notifyListeners();
     try {
       TaskModel taskModel = await sl<HomeRepository>().deleteTask(id!);
-      if (taskModel.status == true) {
+      if (taskModel.status!) {
         tasks!.removeWhere((i) => i.id == id);
         getHome();
         loading = false;

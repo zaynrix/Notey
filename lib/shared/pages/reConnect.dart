@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:notey/resources/color_manager.dart';
+import 'package:notey/shared/widgets/CustomCTAButton.dart';
 // import 'package:udemy_flutter/shared/styles/color.dart';
 
 class NetworkDisconnected extends StatelessWidget {
@@ -26,6 +28,16 @@ class NetworkDisconnected extends StatelessWidget {
           ),
           const SizedBox(
             height: 20.0,
+          ),
+          SizedBox(
+            height: 24.h,
+          ),
+          CustomeCTAButton(
+            ProgressColor: ColorManager.white,
+            trigger: false,
+            primary: ColorManager.primary,
+            onPressed: onPress,
+            title: "Retry",
           ),
           // InkWell(
           //   onTap: onPress,

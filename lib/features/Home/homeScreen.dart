@@ -88,7 +88,10 @@ print("This provider ${    Provider.of<HomeProvider>(context,listen: false).task
           ),
           body: Provider.of<InternetConnectionStatus>(context) ==
                   InternetConnectionStatus.disconnected
-              ? NetworkDisconnected(onPress: () {})
+              ? NetworkDisconnected(onPress: () {
+            value.refresh();
+
+          })
               : RefreshIndicator(
                   onRefresh: () async {
                     value.refresh();
