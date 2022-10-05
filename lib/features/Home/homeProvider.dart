@@ -100,6 +100,9 @@ class HomeProvider extends ChangeNotifier {
         getHome();
         loading = false;
         notifyListeners();
+
+        // Second Way
+
         // tasks!.forEach(
         //   (element) {
         //     id == element.id ? element.title = noteTitle.text : "";
