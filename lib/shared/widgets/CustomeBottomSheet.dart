@@ -54,7 +54,7 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                   controller: data.noteTitle,
                   hintText: '${AppStrings().typeSomething}',
                   keyboardType: TextInputType.name,
-                  focuse: (_) => FocusScope.of(context).nextFocus(),
+                  focuse: (_) => FocusScope.of(context).nearestScope,
                   textInputAction: TextInputAction.next,
                   onChanged: (val) {
                     data.noteTitle.text = val!;
@@ -78,7 +78,7 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                 CustomeCTAButtonCancel(
                   trigger: false,
 
-                  // primary: ColorManager.parent,
+                  primary: ColorManager.lightGrey,
                   onPressed: () {
                     data.id = 0;
                     data.noteTitle.clear();

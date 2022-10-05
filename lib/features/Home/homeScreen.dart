@@ -22,23 +22,38 @@ import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/shared/skeletonWidget/ShimmerHelper.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen() {
     sl<HomeProvider>().getHome();
   }
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+@override
+  void initState() {
+print("This provider ${    Provider.of<HomeProvider>(context,listen: false).tasks!.length}");
+  super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Consumer2<HomeProvider, SettingProvider>(
       builder: (context, value, v2, child) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           key: value.ScaffoldKeySheet,
           floatingActionButton: FloatingActionButton(
             elevation: 16,
             child: Icon(Icons.add),
             backgroundColor: ColorManager.darkGrey,
             onPressed: () {
-              value.languageSheet(value.ScaffoldKeySheet);
+              value.noteTitle.clear();
+              value.id =0;
+
+              value.noteBottomSheet(value.ScaffoldKeySheet);
             },
           ),
           backgroundColor: ColorManager.backgroundColor,
@@ -191,7 +206,7 @@ class noteCard extends StatelessWidget {
                 } else {
                   data.noteTitle.text = element!.title!;
                   data.id = element!.id;
-                  data.languageSheet(scaffoldKeySheet!);
+                  data.noteBottomSheet(scaffoldKeySheet!);
                 }
                 return null;
               }

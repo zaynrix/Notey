@@ -61,6 +61,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   // ------------------ Login ------------------
+
   Future<void> loginProvider() async {
     if (formKey.currentState!.validate()) {
       try {

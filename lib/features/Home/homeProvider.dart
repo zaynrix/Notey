@@ -9,6 +9,7 @@ import 'package:notey/repository/home_repo/task_repo.dart';
 import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
 
 class HomeProvider extends ChangeNotifier {
+
   int? id = 0;
   bool? init;
 
@@ -25,7 +26,6 @@ class HomeProvider extends ChangeNotifier {
 
   Future getHome() async {
     init = false;
-
     try {
       TaskModel taskModel = await sl<HomeRepository>().getTasks();
       tasks = taskModel.data;
@@ -68,11 +68,15 @@ class HomeProvider extends ChangeNotifier {
     loading = true;
     notifyListeners();
     try {
-      await sl<HomeRepository>().deleteTask(id!);
-      tasks!.removeWhere((i) => i.id == id);
-      getHome();
-      loading = false;
-      notifyListeners();
+      TaskModel taskModel = await sl<HomeRepository>().deleteTask(id!);
+      if (taskModel.status == true) {
+        tasks!.removeWhere((i) => i.id == id);
+        getHome();
+        loading = false;
+        notifyListeners();
+      } else {
+        AppConfig.showSnakBar("${taskModel.message}", Success: false);
+      }
     } on DioError catch (e) {
       init = false;
       loading = false;
@@ -90,14 +94,18 @@ class HomeProvider extends ChangeNotifier {
     loading = true;
     notifyListeners();
     try {
-      await sl<HomeRepository>().updateTask(id!, noteTitle.text);
-      tasks!.forEach(
-        (element) {
-          id == element.id ? element.title = noteTitle.text : "";
-          loading = false;
-          notifyListeners();
-        },
-      );
+      TaskModel taskModel =
+          await sl<HomeRepository>().updateTask(id!, noteTitle.text);
+      if (taskModel.status == true) {
+        getHome();
+        loading = false;
+        notifyListeners();
+        // tasks!.forEach(
+        //   (element) {
+        //     id == element.id ? element.title = noteTitle.text : "";
+        //   },
+        // );
+      }
     } on DioError catch (e) {
       loading = false;
       notifyListeners();
@@ -120,17 +128,23 @@ class HomeProvider extends ChangeNotifier {
 
   // ------------------ Show Language Sheet ------------------
 
-  languageSheet(GlobalKey ScaffoldKeySheet) {
+  noteBottomSheet(GlobalKey ScaffoldKeySheet) {
     id == 0 ? 0 : id;
     id == 0 ? noteTitle.clear() : noteTitle;
     showModalBottomSheet(
-      isDismissible: false,
+
+      isScrollControlled: true,
+
+      isDismissible: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
       backgroundColor: ColorManager.darkGrey,
       context: ScaffoldKeySheet.currentContext!,
-      builder: (context) => BottomSheetNote(),
+      builder: (context) => Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: BottomSheetNote(),
+      ),
     );
   }
 }

@@ -27,11 +27,16 @@ class Signup extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Consumer<AuthProvider>(
-          builder: (context, peovider, _) => Scaffold(
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+            currentFocus.focusedChild!.unfocus();
+          }
+          //FocusScope.of(context).unfocus()
+        }, child: Consumer<AuthProvider>(
+          builder: (context, provider, _) => Scaffold(
               body: Form(
-            key: peovider.formKey,
+            key: provider.formKey,
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -79,10 +84,10 @@ class Signup extends StatelessWidget {
                       ),
                       hintText: 'Fullname',
                       keyboardType: TextInputType.emailAddress,
-                      focuse: (_) => FocusScope.of(context).nextFocus(),
+                      focuse: (_) => FocusScope.of(context).nearestScope,
                       textInputAction: TextInputAction.next,
                       onChanged: (val) {
-                        peovider.fullname.text = val!;
+                        provider.fullname.text = val!;
                       },
                       validator: (value) => Validator.valueExists(value ?? ""),
                     ),
@@ -99,7 +104,7 @@ class Signup extends StatelessWidget {
                       focuse: (_) => FocusScope.of(context).nextFocus(),
                       textInputAction: TextInputAction.next,
                       onChanged: (val) {
-                        peovider.emailController.text = val!;
+                        provider.emailController.text = val!;
                       },
                       validator: (value) =>
                           Validator2.validateEmail(value ?? ""),
@@ -108,6 +113,7 @@ class Signup extends StatelessWidget {
                       height: 14.h,
                     ),
                     CustomTextFiled(
+                      focuse: (_) => FocusScope.of(context).nearestScope,
 
                       prefixIcon: Container(
                         child: ButtonTheme(
@@ -127,11 +133,11 @@ class Signup extends StatelessWidget {
                                   color: ColorManager.lightGrey,
                                   fontSize: FontSize.s16.sp),
                             ),
-                            value: peovider.selectedGender,
+                            value: provider.selectedGender,
                             onChanged: (newValue) {
-                              peovider.selectGender(newValue);
+                              provider.selectGender(newValue);
                             },
-                            items: peovider.gender.map((location) {
+                            items: provider.gender.map((location) {
                               return DropdownMenuItem(
                                 child: new Text(
                                   "${location.values}",
@@ -148,13 +154,13 @@ class Signup extends StatelessWidget {
                       ),
                       hintText: '',
                       keyboardType: TextInputType.phone,
-                      focuse: (_) => FocusScope.of(context).nextFocus(),
+                      // focuse: (_) => FocusScope.of(context).nextFocus(),
                       textInputAction: TextInputAction.next,
                       onChanged: (val) {
                         // peovider.phone.text = val!;
                       },
                       validator: (value) =>
-                          peovider.selectedGender == null ? "" : null,
+                          provider.selectedGender == null ? "" : null,
                     ),
                     SizedBox(
                       height: 14.h,
@@ -169,10 +175,10 @@ class Signup extends StatelessWidget {
                         path: IconAssets.lock,
                       ),
                       hintText: 'password',
-                      focuse: (_) => FocusScope.of(context).nextFocus(),
+                      focuse: (_) => FocusScope.of(context).nearestScope,
                       textInputAction: TextInputAction.next,
                       onChanged: (val) {
-                        peovider.passwordController.text = val!;
+                        provider.passwordController.text = val!;
                       },
                       validator: (value) =>
                           Validator2.validatePassword(value ?? ""),
@@ -194,11 +200,11 @@ class Signup extends StatelessWidget {
                       focuse: (_) => FocusScope.of(context).nextFocus(),
                       textInputAction: TextInputAction.done,
                       onChanged: (val) {
-                        peovider.confirmPasswordController.text = val!;
+                        provider.confirmPasswordController.text = val!;
                       },
                       validator: (val) {
                         if (val!.isEmpty) return 'Empty'.tr();
-                        if (val != peovider.passwordController.text)
+                        if (val != provider.passwordController.text)
                           return 'Not Match'.tr();
                         return null;
                       }, //0599147563
@@ -213,11 +219,11 @@ class Signup extends StatelessWidget {
                             data: ThemeData(
                                 unselectedWidgetColor: const Color(0xFF667085)),
                             child: Checkbox(
-                              value: peovider.rememberMe,
+                              value: provider.rememberMe,
                               checkColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
                               activeColor: ColorManager.secondryBlack,
                               onChanged: (value) {
-                                peovider.remember(value!);
+                                provider.remember(value!);
                               },
                             )),
                         Text('Agree with trams and condition'.tr(),
@@ -231,10 +237,10 @@ class Signup extends StatelessWidget {
                       height: 40.h,
                     ),
                     CustomeCTAButton(
-                      trigger: peovider.loading,
+                      trigger: provider.loading,
                       primary: ColorManager.secondryBlack,
                       onPressed: () {
-                        peovider.SignupProvider();
+                        provider.SignupProvider();
                       },
                       title: "Sign Up",
                     ),
