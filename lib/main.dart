@@ -61,9 +61,6 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider.value(
               value: sl<SettingProvider>(),
             ),
-            // ChangeNotifierProvider.value(
-            //   value: sl<Connection>(),
-            // ),
           ],
           child: MaterialApp(
             localizationsDelegates: context.localizationDelegates,
