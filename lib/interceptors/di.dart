@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:notey/api/endPoints.dart';
@@ -14,7 +15,6 @@ import 'package:notey/repository/user_repo/login_repo.dart';
 import 'package:notey/routing/navigation.dart';
 import 'package:notey/utils/appConfig.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dio_interceptor.dart';
 
 final sl = GetIt.instance;
 late bool isConnected;
