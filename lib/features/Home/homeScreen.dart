@@ -52,7 +52,7 @@ print("This provider ${    Provider.of<HomeProvider>(context,listen: false).task
             onPressed: () {
               value.noteTitle.clear();
               value.id =0;
-
+//
               value.noteBottomSheet(value.ScaffoldKeySheet);
             },
           ),
