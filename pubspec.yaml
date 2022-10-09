@@ -32,24 +32,24 @@ dependencies:
 
   dio: #http
   get_it: #Service Locator
-  rxdart: 0.27.5 #Streams
-  badges: 2.0.3 #Badges
+#  rxdart: 0.27.5 #Streams
+#  badges: 2.0.3 #Badges
   rename: 2.0.1 #Rename
   lottie: 1.4.2 #Animations
   shimmer: 2.0.0 #Skeleton
   provider: #State Management
-  geolocator: #Location
+#  geolocator: #Location
   flutter_svg: #Svg
-  image_picker: #Picker
+#  image_picker: #Picker
   url_launcher: 6.1.5 #Luncher
-  google_fonts: 2.1.0 # Google Fonts
+#  google_fonts: 2.1.0 # Google Fonts
   cupertino_icons: 1.0.2 #IOS Icons
 #  flutter_offline: ^2.1.0
   easy_localization: #Localizations
   shared_preferences: #Local Storage
   flutter_screenutil: #Responsive Design
   cached_network_image: #Images
-  flutter_secure_storage: 6.0.0 #Secure Storage
+#  flutter_secure_storage: 6.0.0 #Secure Storage
   connectivity_plus: 2.3.7 #Connectivity
   introduction_screen: ^3.0.2
   simple_gradient_text: ^1.2.4
