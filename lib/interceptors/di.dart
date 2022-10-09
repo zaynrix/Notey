@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:notey/interceptors/retry_interceptor.dart';
+
 import 'dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -17,9 +20,10 @@ import 'package:notey/utils/appConfig.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
-late bool isConnected;
 Future<void> init() async {
-  Dio client = Dio(
+  // Dio? dio;
+
+ Dio client = Dio(
     BaseOptions(
       receiveDataWhenStatusError: true,
       connectTimeout: 50000,
@@ -28,13 +32,17 @@ Future<void> init() async {
       baseUrl: '${Endpoints.baseUrl}',
       contentType: 'application/json',
     ),
-  )..interceptors.addAll([
-      DioInterceptor(),
-    // CacheInterceptor(),
-      // LoggerInterceptor(),
-    ]);
+  );
+ sl.registerLazySingleton<Dio>(() => client);
 
-  sl.registerLazySingleton<Dio>(() => client);
+ client..interceptors..interceptors.addAll([
+   DioInterceptor(),
+   RetryOnConnectionChangeInterceptor(dio: sl(),connectivity: Connectivity())
+   // RetryOnConnectionChangeInterceptor(dio!)
+   // CacheInterceptor(),
+   // LoggerInterceptor(),
+ ]);
+// client..interceptors.add();
   sl.registerLazySingleton(() => AppConfig());
   sl.registerLazySingleton(() => NavigationService());
   sl.registerLazySingleton(() => LoginRepository());
@@ -49,6 +57,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SettingProvider());
   sl.registerLazySingleton(() => AuthProvider());
   sl.registerLazySingleton<HttpAuth>(() => HttpAuth(client: sl()));
+  // sl.registerLazySingleton<RetryOnConnectionChangeInterceptor>(() => RetryOnConnectionChangeInterceptor(dio: sl(),connectivity: Connectivity()));
 
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);

@@ -10,7 +10,9 @@ class HttpAuth {
     required String url,
     Map<String, dynamic>? query,
   })  {
-    client.options.headers = {
+     print("Get Home API");
+
+     client.options.headers = {
       'Content-Type': 'application/json',
     };
     return  client.get(url, queryParameters: query);

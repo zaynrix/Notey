@@ -5,6 +5,8 @@ import 'package:notey/models/taskModel.dart';
 
 class HomeRepository {
   Future<TaskModel> getTasks() async {
+    print("Get Home Repo");
+
     final response = await sl<HttpAuth>().getData(
       url: Endpoints.tasks,
     );

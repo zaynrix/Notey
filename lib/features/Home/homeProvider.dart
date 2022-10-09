@@ -25,6 +25,7 @@ class HomeProvider extends ChangeNotifier {
   // ------------------ Get Tasks ------------------
 
   Future getHome() async {
+    print("Get Home");
     init = false;
     try {
       TaskModel taskModel = await sl<HomeRepository>().getTasks();
@@ -50,6 +51,8 @@ class HomeProvider extends ChangeNotifier {
         TaskModel taskModel =
             await sl<HomeRepository>().addTask(noteTitle.text);
         tasks!.add(taskModel.singleData!);
+        loading = false;
+        notifyListeners();
       } on DioError catch (e) {
         loading = false;
         notifyListeners();

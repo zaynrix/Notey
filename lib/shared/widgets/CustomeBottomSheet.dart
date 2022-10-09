@@ -67,9 +67,9 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                 CustomeCTAButton(
                   trigger: data.loading,
                   primary: ColorManager.secondColor,
-                  onPressed: () {
+                  onPressed: data.loading != true  ?() {
                     data.id == 0 ? data.addTask() : data.updateTask();
-                  },
+                  } : (){},
                   title: data.id != 0 ? AppStrings().update : AppStrings().save,
                 ),
                 SizedBox(
