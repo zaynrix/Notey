@@ -37,7 +37,7 @@ Future<void> init() async {
 
  client..interceptors..interceptors.addAll([
    DioInterceptor(),
-   RetryOnConnectionChangeInterceptor(dio: sl(),connectivity: Connectivity())
+   // RetryOnConnectionChangeInterceptor(dio: sl(),connectivity: Connectivity())
    // RetryOnConnectionChangeInterceptor(dio!)
    // CacheInterceptor(),
    // LoggerInterceptor(),

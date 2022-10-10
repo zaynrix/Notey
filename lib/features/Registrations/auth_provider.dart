@@ -31,27 +31,39 @@ class AuthProvider extends ChangeNotifier {
   bool isObscure = true;
   bool rememberMe = true;
 
+  //
   String? keyGender;
   Map<String, String>? selectedGender;
 
+  //
   List<Map<String, String>> gender = [
     {"M": "Male"},
     {"F": "Female"}
   ];
 
+  // ------------------ change Loader Auth ------------------
+
+  changeLoaderAuth(value) {
+    loading = value;
+    notifyListeners();
+  }
+
   // ------------------ Remember Me ------------------
+
   void remember(bool value) {
     rememberMe = value;
     notifyListeners();
   }
 
   // ------------------ Password Visibility ------------------
+
   void visibility() {
     isObscure = !isObscure;
     notifyListeners();
   }
 
   // ------------------ Select Gender ------------------
+
   void selectGender(selected) {
     selectedGender = selected;
     selectedGender!.forEach((key, value) {
@@ -64,23 +76,19 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> loginProvider() async {
     if (formKey.currentState!.validate()) {
-      try {
-        loading = true;
-        notifyListeners();
+      // try {
+        // loading = true;
+        // notifyListeners();
         LoginResponse res = await sl<LoginRepository>().userLogin(
             email: emailController.text, password: passwordController.text);
-        // if (res.status == true && res.object != null) {
         sl<SharedLocal>().setUser(res.object!);
         sl<NavigationService>().navigateToAndRemove(Routes.home);
-        AppConfig.showSnakBar("Logged",Success: true);
-        // } else {
-        //   AppConfig.showSnakBar("${res.message}");
-        // }
-      } on DioError catch (e) {
-        AppConfig().showException(e);
-      }
-      loading = false;
-      notifyListeners();
+        AppConfig.showSnakBar("Logged", Success: true);
+      // } on DioError catch (e) {
+      //   AppConfig().showException(e);
+      // }
+      // loading = false;
+      // notifyListeners();
     }
   }
 
@@ -97,7 +105,8 @@ class AuthProvider extends ChangeNotifier {
             password: passwordController.text,
             gender: keyGender!);
         AppConfig.showSnakBar(
-            "${res.message ?? "Account was created Successfully!!"}");
+            "${res.message ?? "Account was created Successfully!!"}",
+            Success: true);
         sl<NavigationService>().navigateToAndRemove(Routes.login);
       } on DioError catch (e) {
         AppConfig().showException(e);
@@ -119,10 +128,8 @@ class AuthProvider extends ChangeNotifier {
 
         sl<SharedLocal>().setSignUpTempo("${emailController.text}");
         sl<SharedLocal>().setCode = res.code!;
-        AppConfig.showSnakBar("${res.message}",Success: true);
+        AppConfig.showSnakBar("${res.message}", Success: true);
         sl<NavigationService>().navigateToAndRemove(Routes.createNewPassword);
-
-        // AppConfig.showSnakBar("Something Wrong, Try again");
       } on DioError catch (e) {
         AppConfig().showException(e);
       }
@@ -140,7 +147,7 @@ class AuthProvider extends ChangeNotifier {
       try {
         LoginResponse response = await sl<LoginRepository>().changePassword(
             currentPassword: currentPass.text, newPassword: newPass.text);
-        AppConfig.showSnakBar("${response.message}",Success: true);
+        AppConfig.showSnakBar("${response.message}", Success: true);
         sl<NavigationService>().navigateToAndRemove(Routes.login);
       } on DioError catch (e) {
         AppConfig().showException(e);

@@ -32,8 +32,8 @@ class RouterX {
         );
       case Routes.login:
         return MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider(
-            create: (context) => AuthProvider(),
+          builder: (_) => ChangeNotifierProvider.value(
+            value: sl<AuthProvider>(),
             child: LoginScreen(),
           ),
         );

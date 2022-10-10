@@ -5,6 +5,8 @@ import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/loginModel.dart';
 
 class LoginRepository {
+  // ------------------ User Login ------------------
+
   Future<LoginResponse> userLogin({
     required String email,
     required String password,
@@ -19,11 +21,13 @@ class LoginRepository {
 
     LoginResponse loginResponse = LoginResponse.fromJson(response.data);
 
-    if (loginResponse.status == true) {
-      return loginResponse;
-    }
-    throw '${loginResponse.message}';
+    // if (loginResponse.status == true) {
+    return loginResponse;
+    // }
+    // throw '${loginResponse.message}';
   }
+
+  // ------------------ User Signup ------------------
 
   Future<LoginResponse> userSignup({
     required String name,
@@ -41,9 +45,10 @@ class LoginRepository {
       },
     );
     LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-
     return loginResponse;
   }
+
+  // ------------------ User Forget Password ------------------
 
   Future<LoginResponse> userForgetPassword({
     required String email,
@@ -55,7 +60,6 @@ class LoginRepository {
       },
     );
     LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-
     return loginResponse;
   }
 
