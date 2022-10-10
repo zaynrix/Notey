@@ -48,17 +48,22 @@ class CustomTextFiled extends StatelessWidget {
             blurRadius: 20)
       ]),
       child: TextFormField(
+
+
+        minLines:1,
         maxLines: maxLines,
         inputFormatters: inputFormatters ?? [],
         autovalidateMode: AutovalidateMode.onUserInteraction,
         obscureText: obscureText,
         validator: validator,
         onChanged: onChanged,
+        // textDirection: TextDirection.RTL,
         keyboardType: keyboardType ?? TextInputType.text,
         onFieldSubmitted: focuse,
         controller: controller,
         textInputAction: textInputAction,
         decoration: InputDecoration(
+          isDense: true,
           hintText: hintText.tr(),
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,

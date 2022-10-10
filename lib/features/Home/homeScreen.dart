@@ -22,22 +22,8 @@ import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/shared/skeletonWidget/ShimmerHelper.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen() {
-    sl<HomeProvider>().getHome();
-  }
+class HomeScreen extends StatelessWidget {
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-
-@override
-  void initState() {
-print("This provider ${    Provider.of<HomeProvider>(context,listen: false).tasks!.length}");
-  super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     return Consumer2<HomeProvider, SettingProvider>(
@@ -51,8 +37,7 @@ print("This provider ${    Provider.of<HomeProvider>(context,listen: false).task
             backgroundColor: ColorManager.darkGrey,
             onPressed: () {
               value.noteTitle.clear();
-              value.id =0;
-//
+              value.id = 0;
               value.noteBottomSheet(value.ScaffoldKeySheet);
             },
           ),
@@ -89,9 +74,8 @@ print("This provider ${    Provider.of<HomeProvider>(context,listen: false).task
           body: Provider.of<InternetConnectionStatus>(context) ==
                   InternetConnectionStatus.disconnected
               ? NetworkDisconnected(onPress: () {
-            value.refresh();
-
-          })
+                  value.refresh();
+                })
               : RefreshIndicator(
                   onRefresh: () async {
                     value.refresh();

@@ -54,8 +54,8 @@ class RouterX {
 
       case Routes.signUp:
         return MaterialPageRoute(
-          builder: (_) => ChangeNotifierProvider(
-            create: (context) => AuthProvider(),
+          builder: (_) => ChangeNotifierProvider.value(
+            value: sl<AuthProvider>(),
             child: Signup(),
           ),
         );

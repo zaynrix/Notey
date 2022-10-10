@@ -21,7 +21,9 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController newPass = TextEditingController();
 
   // ------------------  Forms Key  ------------------
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> forgetFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -75,29 +77,21 @@ class AuthProvider extends ChangeNotifier {
   // ------------------ Login ------------------
 
   Future<void> loginProvider() async {
-    if (formKey.currentState!.validate()) {
-      // try {
-        // loading = true;
-        // notifyListeners();
+    if (loginFormKey.currentState!.validate()) {
+      try {
         LoginResponse res = await sl<LoginRepository>().userLogin(
             email: emailController.text, password: passwordController.text);
         sl<SharedLocal>().setUser(res.object!);
         sl<NavigationService>().navigateToAndRemove(Routes.home);
         AppConfig.showSnakBar("Logged", Success: true);
-      // } on DioError catch (e) {
-      //   AppConfig().showException(e);
-      // }
-      // loading = false;
-      // notifyListeners();
+      } on DioError {}
     }
   }
 
   // ------------------ Sign Up Provider ------------------
 
   Future<void> SignupProvider() async {
-    if (formKey.currentState!.validate()) {
-      loading = true;
-      notifyListeners();
+    if (signUpFormKey.currentState!.validate()) {
       try {
         LoginResponse res = await sl<LoginRepository>().userSignup(
             name: fullname.text,
@@ -108,20 +102,14 @@ class AuthProvider extends ChangeNotifier {
             "${res.message ?? "Account was created Successfully!!"}",
             Success: true);
         sl<NavigationService>().navigateToAndRemove(Routes.login);
-      } on DioError catch (e) {
-        AppConfig().showException(e);
-      }
-      loading = false;
-      notifyListeners();
+      } on DioError {}
     }
   }
 
   // ------------------ Forget Provider ------------------
 
   Future<void> forgetProvider() async {
-    if (formKey.currentState!.validate()) {
-      loading = true;
-      notifyListeners();
+    if (forgetFormKey.currentState!.validate()) {
       try {
         LoginResponse res = await sl<LoginRepository>()
             .userForgetPassword(email: emailController.text);
@@ -130,11 +118,7 @@ class AuthProvider extends ChangeNotifier {
         sl<SharedLocal>().setCode = res.code!;
         AppConfig.showSnakBar("${res.message}", Success: true);
         sl<NavigationService>().navigateToAndRemove(Routes.createNewPassword);
-      } on DioError catch (e) {
-        AppConfig().showException(e);
-      }
-      loading = false;
-      notifyListeners();
+      } on DioError {}
     }
   }
 
@@ -142,18 +126,12 @@ class AuthProvider extends ChangeNotifier {
 
   void changePasswordProvider() async {
     if (formKey2.currentState!.validate()) {
-      loading = true;
-      notifyListeners();
       try {
         LoginResponse response = await sl<LoginRepository>().changePassword(
             currentPassword: currentPass.text, newPassword: newPass.text);
         AppConfig.showSnakBar("${response.message}", Success: true);
         sl<NavigationService>().navigateToAndRemove(Routes.login);
-      } on DioError catch (e) {
-        AppConfig().showException(e);
-      }
-      loading = false;
-      notifyListeners();
+      } on DioError {}
     }
   }
 }

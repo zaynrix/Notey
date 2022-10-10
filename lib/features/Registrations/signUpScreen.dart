@@ -17,11 +17,9 @@ import 'package:notey/utils/appConfig.dart';
 import 'package:notey/utils/validator.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-
 import '../../shared/widgets/CustomeRoundedTextFiled.dart';
 
 class Signup extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,14 +27,15 @@ class Signup extends StatelessWidget {
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
             currentFocus.focusedChild!.unfocus();
           }
-          //FocusScope.of(context).unfocus()
-        }, child: Consumer<AuthProvider>(
+        },
+        child: Consumer<AuthProvider>(
           builder: (context, provider, _) => Scaffold(
               body: Form(
-            key: provider.formKey,
+            key: provider.signUpFormKey,
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -56,16 +55,15 @@ class Signup extends StatelessWidget {
                               .headline2!
                               .copyWith(fontSize: FontSize.s40.sp),
                         ),
-                        GradientText(
-                          'Up'.tr(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2!
-                              .copyWith(
-                                  fontSize: FontSize.s40.sp,
-                                  fontWeight: FontWeightManager.semiBold),
-                          colors: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex]
-                        ),
+                        GradientText('Up'.tr(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2!
+                                .copyWith(
+                                    fontSize: FontSize.s40.sp,
+                                    fontWeight: FontWeightManager.semiBold),
+                            colors: sl<SettingProvider>()
+                                .CCC[sl<SharedLocal>().getColorIndex]),
                       ],
                     ),
                     Text(
@@ -80,7 +78,8 @@ class Signup extends StatelessWidget {
                     CustomTextFiled(
                       prefixIcon: CustomSvgAssets(
                         path: IconAssets.profile,
-                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                        color: sl<SettingProvider>()
+                            .CCC[sl<SharedLocal>().getColorIndex][0],
                       ),
                       hintText: 'Fullname',
                       keyboardType: TextInputType.emailAddress,
@@ -97,7 +96,8 @@ class Signup extends StatelessWidget {
                     CustomTextFiled(
                       prefixIcon: CustomSvgAssets(
                         path: IconAssets.email,
-                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                        color: sl<SettingProvider>()
+                            .CCC[sl<SharedLocal>().getColorIndex][0],
                       ),
                       hintText: 'Email',
                       keyboardType: TextInputType.emailAddress,
@@ -114,17 +114,16 @@ class Signup extends StatelessWidget {
                     ),
                     CustomTextFiled(
                       focuse: (_) => FocusScope.of(context).nearestScope,
-
                       prefixIcon: Container(
                         child: ButtonTheme(
                           alignedDropdown: true,
                           child: DropdownButton(
                             dropdownColor: ColorManager.darkGrey,
-
                             isExpanded: true,
                             icon: Icon(
                               Icons.keyboard_arrow_down_outlined,
-                              color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                              color: sl<SettingProvider>()
+                                  .CCC[sl<SharedLocal>().getColorIndex][0],
                             ),
                             underline: Container(),
                             hint: Text(
@@ -144,7 +143,10 @@ class Signup extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle2!
-                                      .copyWith(color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0]),
+                                      .copyWith(
+                                          color: sl<SettingProvider>().CCC[
+                                              sl<SharedLocal>()
+                                                  .getColorIndex][0]),
                                 ),
                                 value: location,
                               );
@@ -154,11 +156,8 @@ class Signup extends StatelessWidget {
                       ),
                       hintText: '',
                       keyboardType: TextInputType.phone,
-                      // focuse: (_) => FocusScope.of(context).nextFocus(),
                       textInputAction: TextInputAction.next,
-                      onChanged: (val) {
-                        // peovider.phone.text = val!;
-                      },
+                      onChanged: (val) {},
                       validator: (value) =>
                           provider.selectedGender == null ? "" : null,
                     ),
@@ -167,11 +166,13 @@ class Signup extends StatelessWidget {
                     ),
                     CustomTextFiled(
                       suffixIcon: CustomSvgAssets(
-                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                        color: sl<SettingProvider>()
+                            .CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.hide,
                       ),
                       prefixIcon: CustomSvgAssets(
-                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                        color: sl<SettingProvider>()
+                            .CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.lock,
                       ),
                       hintText: 'password',
@@ -189,11 +190,13 @@ class Signup extends StatelessWidget {
                     // 059
                     CustomTextFiled(
                       suffixIcon: CustomSvgAssets(
-                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                        color: sl<SettingProvider>()
+                            .CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.hide,
                       ),
                       prefixIcon: CustomSvgAssets(
-                        color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                        color: sl<SettingProvider>()
+                            .CCC[sl<SharedLocal>().getColorIndex][0],
                         path: IconAssets.lock,
                       ),
                       hintText: 'ConfirmPassword',
@@ -220,7 +223,8 @@ class Signup extends StatelessWidget {
                                 unselectedWidgetColor: const Color(0xFF667085)),
                             child: Checkbox(
                               value: provider.rememberMe,
-                              checkColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                              checkColor: sl<SettingProvider>()
+                                  .CCC[sl<SharedLocal>().getColorIndex][0],
                               activeColor: ColorManager.secondryBlack,
                               onChanged: (value) {
                                 provider.remember(value!);
@@ -244,7 +248,8 @@ class Signup extends StatelessWidget {
                       },
                       title: "Sign Up",
                     ),
-                    SafeArea(  // yahya123@gmail.com
+                    SafeArea(
+                      // yahya123@gmail.com
                       // yahya123
                       bottom: true,
                       child: Center(
@@ -265,13 +270,14 @@ class Signup extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text: 'Login'.tr(),
-
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle2!
                                       .copyWith(
-                                      decoration: TextDecoration.underline,
-                                          color: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
+                                          decoration: TextDecoration.underline,
+                                          color: sl<SettingProvider>().CCC[
+                                              sl<SharedLocal>()
+                                                  .getColorIndex][0],
                                           fontWeight:
                                               FontWeightManager.semiBold),
                                 ),
@@ -294,4 +300,3 @@ class Signup extends StatelessWidget {
     );
   }
 }
-

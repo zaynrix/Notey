@@ -27,18 +27,16 @@ class LoginScreen extends StatelessWidget {
           body: GestureDetector(
             onTap: () {
               FocusScopeNode currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+              if (!currentFocus.hasPrimaryFocus &&
+                  currentFocus.focusedChild != null) {
                 currentFocus.focusedChild!.unfocus();
               }
-              //FocusScope.of(context).unfocus()
             },
             child: SingleChildScrollView(
               child: Container(
-                // width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
-
                 child: Form(
-                  key: value.formKey,
+                  key: value.loginFormKey,
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25.w),
                     child: Column(
@@ -89,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                           hintText: 'Email',
                           keyboardType: TextInputType.emailAddress,
                           focuse: (_) => FocusScope.of(context).nearestScope,
-                            textInputAction: TextInputAction.next,
+                          textInputAction: TextInputAction.next,
                           onChanged: (val) {
                             value.emailController.text = val!;
                           },
@@ -101,7 +99,6 @@ class LoginScreen extends StatelessWidget {
                         ),
                         CustomTextFiled(
                           textInputAction: TextInputAction.next,
-
                           obscureText: value.isObscure,
                           suffixIcon: GestureDetector(
                             onTap: () {
@@ -176,7 +173,8 @@ class LoginScreen extends StatelessWidget {
                                       style: Theme.of(context)
                                           .textTheme
                                           .subtitle2!
-                                          .copyWith(color: ColorManager.lightGrey),
+                                          .copyWith(
+                                              color: ColorManager.lightGrey),
                                     ),
                                     TextSpan(
                                       text: 'SignUp'.tr(),
@@ -184,7 +182,8 @@ class LoginScreen extends StatelessWidget {
                                           .textTheme
                                           .subtitle2!
                                           .copyWith(
-                                              decoration: TextDecoration.underline,
+                                              decoration:
+                                                  TextDecoration.underline,
                                               color: sl<SettingProvider>().CCC[
                                                   sl<SharedLocal>()
                                                       .getColorIndex][0],

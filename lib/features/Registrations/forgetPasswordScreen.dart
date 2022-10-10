@@ -9,6 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
 
+import '../../utils/validator.dart';
+
 class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class ForgetPassword extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 25.w),
                   child: Form(
-                    key: value.formKey,
+                    key: value.forgetFormKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -81,12 +83,8 @@ class ForgetPassword extends StatelessWidget {
                           onChanged: (val) {
                             value.emailController.text = val!;
                           },
-                          validator: (userName) {
-                            if (userName == null || userName.isEmpty) {
-                              return "Empty Your Email";
-                            }
-                            return null;
-                          },
+                          validator: (value) =>
+                              Validator2.validateEmail(value ?? ""),
                         ),
                         SizedBox(
                           height: 24.h,
@@ -97,7 +95,6 @@ class ForgetPassword extends StatelessWidget {
                           primary: ColorManager.primary,
                           onPressed: () {
                             value.forgetProvider();
-                            // sl<NavigationService>().navigateTo(cheackYourMail);
                           },
                           title: "Next",
                         ),

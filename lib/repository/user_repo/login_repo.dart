@@ -38,7 +38,7 @@ class LoginRepository {
     final response = await sl<HttpAuth>().postData(
       url: "${Endpoints.auth}" "${Endpoints.signUp}",
       data: {
-        'email': email, // yahya1@gmail.com
+        'email2': email, // yahya1@gmail.com
         'password': password, // yahya123
         'full_name': name, // yahya
         'gender': gender.toUpperCase(), // M
