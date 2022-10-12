@@ -19,6 +19,7 @@ class RouterX {
   static Route<dynamic> generateRoute(RouteSettings settings) {
 
     switch (settings.name) {
+
       case Routes.splash:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider.value(
@@ -26,10 +27,12 @@ class RouterX {
             child: SplashScreen(),
           ),
         );
+
       case Routes.intro:
         return MaterialPageRoute(
-          builder: (context) => const Introduction(),
+          builder: (_) => const Introduction(),
         );
+
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider.value(
@@ -44,7 +47,9 @@ class RouterX {
             value: sl<AuthProvider>(),
             child: ForgetPassword(),
           ),
-        ); case Routes.createNewPassword:
+        );
+
+        case Routes.createNewPassword:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider.value(
             value: sl<AuthProvider>(),
@@ -59,13 +64,17 @@ class RouterX {
             child: Signup(),
           ),
         );
+
       case Routes.home:
         return MaterialPageRoute(
           builder: (_) => HomeScreen(),
-        );  case Routes.setting:
+        );
+
+        case Routes.setting:
         return MaterialPageRoute(
           builder: (_) => SettingsScreen(),
         );
+
       case Routes.typographyScreen:
         return MaterialPageRoute(
           builder: (_) => TypographyScreen(),
@@ -73,11 +82,12 @@ class RouterX {
 
       case Routes.contactus:
         return MaterialPageRoute(
-          builder: (context) => ContactUsScreen(),
+          builder: (_) => ContactUsScreen(),
         );
+
       default:
         return MaterialPageRoute(
-          builder: (context) => Scaffold(
+          builder: (_) => Scaffold(
             body: Center(
               child: Text('No route defined for ${settings.name}'),
             ),

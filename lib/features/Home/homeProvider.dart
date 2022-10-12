@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/taskModel.dart';
 import 'package:notey/utils/appConfig.dart';
@@ -9,8 +11,6 @@ import 'package:notey/repository/home_repo/task_repo.dart';
 import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
 
 class HomeProvider extends ChangeNotifier {
-
-
   //
   int? id = 0;
   bool? init;
@@ -21,6 +21,7 @@ class HomeProvider extends ChangeNotifier {
   TextEditingController noteTitle = TextEditingController();
   GlobalKey<ScaffoldState> ScaffoldKeySheet = GlobalKey();
   GlobalKey<ScaffoldState> ScaffoldKeySheet1 = GlobalKey();
+
   //
   List<Data>? tasks = [];
 
