@@ -49,8 +49,7 @@ class CustomTextFiled extends StatelessWidget {
       ]),
       child: TextFormField(
 
-
-        minLines:1,
+        // minLines:maxLines,
         maxLines: maxLines,
         inputFormatters: inputFormatters ?? [],
         autovalidateMode: AutovalidateMode.onUserInteraction,

@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/taskModel.dart';
 import 'package:notey/utils/appConfig.dart';
@@ -79,8 +77,6 @@ class HomeProvider extends ChangeNotifier {
         getHome();
         notifyListeners();
       } else {
-        // AppConfig().showException(e);
-
         AppConfig.showSnakBar("${taskModel.message}", Success: false);
       }
     } on DioError catch (e) {
