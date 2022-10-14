@@ -1,13 +1,12 @@
 import 'dart:async';
-
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/features/Home/homeProvider.dart';
 import 'package:notey/interceptors/di.dart';
-import 'package:notey/resources/color_manager.dart';
 import 'package:notey/routing/navigation.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:notey/features/Home/homeProvider.dart';
+import 'package:notey/resources/color_manager.dart';
 import 'package:notey/routing/routes.dart';
 
 import '../interceptors/dio_exception.dart';
