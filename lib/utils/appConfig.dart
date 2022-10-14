@@ -8,7 +8,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:notey/features/Home/homeProvider.dart';
 import 'package:notey/resources/color_manager.dart';
 import 'package:notey/routing/routes.dart';
-
 import '../interceptors/dio_exception.dart';
 
 class AppConfig extends ChangeNotifier {
