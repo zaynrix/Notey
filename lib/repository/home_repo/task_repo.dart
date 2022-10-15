@@ -4,9 +4,9 @@ import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/taskModel.dart';
 
 class HomeRepository {
-  Future<TaskModel> getTasks() async {
-    print("Get Home Repo");
 
+
+  Future<TaskModel> getTasks() async {
     final response = await sl<HttpAuth>().getData(
       url: Endpoints.tasks,
     );
@@ -17,6 +17,7 @@ class HomeRepository {
     }
     throw '${taskModel.message}';
   }
+
 
   Future<TaskModel> addTask(String title) async {
     final response = await sl<HttpAuth>().postData(
