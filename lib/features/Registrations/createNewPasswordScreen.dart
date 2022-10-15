@@ -1,46 +1,40 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
-import 'package:notey/shared/widgets/CustomCTAButton.dart';
-import 'package:notey/utils/validator.dart';
 import 'package:provider/provider.dart';
+import 'package:notey/utils/validator.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/font_manager.dart';
 import 'package:notey/resources/color_manager.dart';
 import 'package:notey/resources/assets_manager.dart';
 import 'package:notey/shared/widgets/CustomeSvg.dart';
+import 'package:notey/shared/widgets/CustomCTAButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
 
-
 class CreateNewPassword extends StatelessWidget {
-  CreateNewPassword({Key? key}) : super(key: key);
-  var data = sl<AuthProvider>();
-//yahya.m.abunada@gmail.com
+   CreateNewPassword({Key? key}) : super(key: key);
+  final data = sl<AuthProvider>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.info_outline))
           ],
-          // backgroundColor: Colors.white,
         ),
         body: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Consumer<AuthProvider>(
             builder: (context, provider, _) => Scaffold(
                 body: SingleChildScrollView(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height,
-
-                    child: Form(
-              key: data.formKey2,
-              child: Padding(
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                child: Form(
+                  key: data.formKey2,
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +114,6 @@ class CreateNewPassword extends StatelessWidget {
                           ),
                           hintText: 'New Password',
                           focuse: (_) => FocusScope.of(context).nearestScope,
-
                           textInputAction: TextInputAction.next,
                           onChanged: (val) {
                             data.newPass.text = val!;
@@ -150,10 +143,10 @@ class CreateNewPassword extends StatelessWidget {
                         ),
                       ],
                     ),
-              ),
-            ),
                   ),
-                )),
+                ),
+              ),
+            )),
           ),
         ));
   }
