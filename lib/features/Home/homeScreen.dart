@@ -134,14 +134,14 @@ class HomeScreen extends StatelessWidget {
 }
 
 class noteCard extends StatelessWidget {
-  GlobalKey? scaffoldKeySheet;
-  Data? element;
-  bool stop;
+ final GlobalKey? scaffoldKeySheet;
+ final Data? element;
+ final bool stop;
 
   noteCard({Key? key, this.element, this.stop = false, this.scaffoldKeySheet})
       : super(key: key);
 
-  var data = sl<HomeProvider>();
+ final data = sl<HomeProvider>();
 
   @override
   Widget build(BuildContext context) {
