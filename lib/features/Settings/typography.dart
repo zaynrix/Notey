@@ -92,7 +92,6 @@ class TypographyScreen extends StatelessWidget {
                   margin: EdgeInsets.only(right: 10),
                   decoration: new BoxDecoration(
                       color: ColorManager.black,
-                      // border: ,
                       borderRadius:
                           new BorderRadius.all(new Radius.circular(5.0)),
                       boxShadow: [

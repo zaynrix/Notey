@@ -10,13 +10,10 @@ class SkeletonShoppingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return ListView.builder(
         shrinkWrap: true,
         itemCount: itemCount,
         physics: NeverScrollableScrollPhysics(),
-        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //     childAspectRatio: 0.6, crossAxisCount: 2),
         itemBuilder: (_, index) => SkeletonShoppingCard());
   }
 }
