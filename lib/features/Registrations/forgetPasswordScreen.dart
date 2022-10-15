@@ -1,4 +1,5 @@
 
+import '../../utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:notey/resources/font_manager.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
 
-import '../../utils/validator.dart';
 
 class ForgetPassword extends StatelessWidget {
   @override
