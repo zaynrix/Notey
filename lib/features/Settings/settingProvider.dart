@@ -19,8 +19,10 @@ class SettingProvider extends ChangeNotifier {
   int colorIndex = 0;
 
   List<List<Color>> CCC = [
-
-    [ColorManager.primary, ColorManager.secondery,],
+    [
+      ColorManager.primary,
+      ColorManager.secondery,
+    ],
     [ColorManager.starYellow, ColorManager.darkGrey],
     [ColorManager.red, ColorManager.darkGrey],
     [ColorManager.secondery, ColorManager.lightGrey],
