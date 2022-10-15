@@ -59,25 +59,4 @@ class HomeRepository {
     }
     throw '${taskModel.message}';
   }
-// Future<LoginResponse> userSignup({
-//   required String name,
-//   required String email,
-//   required String gender,
-//   required String password,
-// }) async {
-//   final response = await sl<HttpAuth>().postData(
-//     url: "${Endpoints.auth}" "${Endpoints.signUp}",
-//     data: {
-//       'email': email, // yahya1@gmail.com
-//       'password': password, // yahya123
-//       'full_name': name, // yahya
-//       'gender': gender.toUpperCase(), // M
-//     },
-//   );
-//   LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-//   if (loginResponse.status == true) {
-//     return loginResponse;
-//   }
-//   throw '${loginResponse.message}';
-// }
 }
