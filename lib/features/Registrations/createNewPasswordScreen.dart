@@ -134,7 +134,6 @@ class CreateNewPassword extends StatelessWidget {
                           primary: ColorManager.primary,
                           onPressed: () {
                             sl<AuthProvider>().changePasswordProvider();
-                            // sl<NavigationService>().navigateTo(login);
                           },
                           title: "Confirm",
                         ),
