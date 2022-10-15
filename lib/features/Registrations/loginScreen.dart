@@ -21,8 +21,9 @@ import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(builder: (context, value, _) {
-      return Scaffold(
+    return Consumer<AuthProvider>(
+      builder: (context, value, _) {
+        return Scaffold(
           resizeToAvoidBottomInset: true,
           body: GestureDetector(
             onTap: () {
@@ -40,8 +41,6 @@ class LoginScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25.w),
                     child: Column(
-                      // mainAxisSize: MainAxisSize.min,
-                      // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Spacer(),
                         SizedBox(
@@ -205,7 +204,9 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ));
-    });
+          ),
+        );
+      },
+    );
   }
 }
