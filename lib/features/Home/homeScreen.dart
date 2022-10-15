@@ -224,6 +224,7 @@ class noteCard extends StatelessWidget {
   }
 }
 
+
 Widget slideLeftBackground() {
   return Container(
     color: Colors.red,
