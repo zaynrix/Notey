@@ -5,12 +5,12 @@ class HttpAuth {
 
   HttpAuth({required this.client});
 
-  //get data
-   Future<Response> getData({
+  // ---------- Get Data ----------
+
+  Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
   })  {
-     print("Get Home API");
 
      client.options.headers = {
       'Content-Type': 'application/json',
@@ -18,7 +18,8 @@ class HttpAuth {
     return  client.get(url, queryParameters: query);
   }
 
-  //post data
+  // ---------- Post Data ----------
+
    Future<Response> postData({
     required String url,
     Map<String, dynamic>? data,
@@ -35,7 +36,8 @@ class HttpAuth {
     return  client.post(url, queryParameters: query, data: data);
   }
 
-  //update data
+  // ---------- Update Data ----------
+
    Future<Response> putData({
     required String url,
     required Map<String, dynamic> data,
@@ -52,7 +54,8 @@ class HttpAuth {
     return  client.put(url, queryParameters: query, data: data);
   }
 
-  //delete data
+  // ---------- Delete Data ----------
+
    Future<Response> deleteData({
     required String url,
     Map<String, dynamic>? query,
