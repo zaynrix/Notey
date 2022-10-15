@@ -60,10 +60,10 @@ class HomeProvider extends ChangeNotifier {
       } on DioError catch (e) {
         AppConfig().showException(e);
       }
-      id = 0;
-      noteTitle.clear();
+
+      resetNote();
+
       sl<NavigationService>().pop();
-      notifyListeners();
     }
   }
 
@@ -84,9 +84,7 @@ class HomeProvider extends ChangeNotifier {
       notifyListeners();
       AppConfig().showException(e);
     }
-    noteTitle.clear();
-    id = 0;
-    notifyListeners();
+    resetNote();
   }
 
   // ------------------ Update Task ------------------
@@ -102,10 +100,9 @@ class HomeProvider extends ChangeNotifier {
     } on DioError catch (e) {
       AppConfig().showException(e);
     }
-    id = 0;
+    resetNote();
     init = false;
     sl<NavigationService>().pop();
-    noteTitle.clear();
     notifyListeners();
   }
 
@@ -117,11 +114,26 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ------------------ Reset Note ------------------
+
+  resetNote() async {
+    id = 0;
+    noteTitle.clear();
+    notifyListeners();
+  }
+
+  // ------------------ Initial Note ------------------
+
+  initialNote() async {
+    id;
+    noteTitle;
+    notifyListeners();
+  }
+
   // ------------------ Show Language Sheet ------------------
 
   noteBottomSheet(GlobalKey ScaffoldKeySheet) {
-    id == 0 ? 0 : id;
-    id == 0 ? noteTitle.clear() : noteTitle;
+    id == 0 ? resetNote() : initialNote();
     showModalBottomSheet(
       isScrollControlled: true,
       isDismissible: true,
