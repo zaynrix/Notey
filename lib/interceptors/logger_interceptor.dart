@@ -3,7 +3,6 @@ import 'package:logger/logger.dart';
 
 class LoggerInterceptor extends Interceptor {
   Logger logger = Logger(
-    // Customize the printer
     printer: PrettyPrinter(
       methodCount: 0,
       printTime: false,

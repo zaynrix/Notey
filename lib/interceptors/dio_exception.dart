@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/routing/routes.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/routing/navigation.dart';
-import 'package:notey/routing/routes.dart';
+import 'package:notey/api/local/local_pref.dart';
 
 class DioExceptions implements Exception {
   late String message;
