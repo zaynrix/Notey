@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:notey/api/endPoints.dart';
 import 'package:notey/api/remote/auth_api.dart';
 import 'package:notey/interceptors/di.dart';
@@ -94,7 +93,6 @@ class SettingRepository{
 }
 ''';
     Map<String, dynamic> jsonList = jsonDecode(response);
-
     ContactUs aboutUs = ContactUs.fromJson(jsonList);
     return aboutUs;
   }
