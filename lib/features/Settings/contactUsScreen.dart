@@ -39,7 +39,6 @@ class ContactUsScreen extends StatelessWidget {
                     ),
                     itemBuilder: (context, index) => Container(
                       decoration: BoxDecoration(
-                        // color: ColorManager.white,
                         borderRadius: BorderRadius.all(
                           Radius.circular(15.0.r),
                         ),
