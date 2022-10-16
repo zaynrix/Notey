@@ -35,7 +35,7 @@ class LoginRepository {
     required String password,
   }) async {
     final response = await sl<HttpAuth>().postData(
-      url: "${Endpoints.auth}" "${Endpoints.signUp}",
+      url: Endpoints.auth+Endpoints.signUp,
       data: {
         'email': email,
         'password': password,
@@ -56,7 +56,7 @@ class LoginRepository {
     required String email,
   }) async {
     final response = await sl<HttpAuth>().postData(
-      url: "${Endpoints.auth}" "${Endpoints.forgetPassword}",
+      url: Endpoints.auth+Endpoints.forgetPassword,
       data: {
         'email': email,
       },
@@ -71,7 +71,7 @@ class LoginRepository {
   Future<LoginResponse> changePassword(
       {String? currentPassword, String? newPassword}) async {
     final response = await sl<HttpAuth>().postData(
-      url: "${Endpoints.auth}" "${Endpoints.resetPassword}",
+      url: Endpoints.auth+Endpoints.resetPassword,
       data: {
         "email": "${sl<SharedLocal>().getSignUpTempo()}",
         "code": "${sl<SharedLocal>().geCode}",
