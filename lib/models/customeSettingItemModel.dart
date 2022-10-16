@@ -29,17 +29,13 @@ List<CustomeSettingItemModel> SettingItems = [
       title: "Typography"),
   CustomeSettingItemModel(
       onPressed: () {
-        sl<SettingProvider>().languageSheet(sl<HomeProvider>().ScaffoldKeySheet);
-// sl<Provider>(). getAddressProvider();
+        sl<SettingProvider>()
+            .languageSheet(sl<HomeProvider>().ScaffoldKeySheet);
       },
-      path:IconAssets.language,
+      path: IconAssets.language,
       title: "Language"),
   CustomeSettingItemModel(
-      onPressed: () {
-      },
-      path: IconAssets.privacy,
-      title: "Privacy"),
-
+      onPressed: () {}, path: IconAssets.privacy, title: "Privacy"),
   CustomeSettingItemModel(
       onPressed: () {
         sl<NavigationService>().navigateTo(Routes.contactus);
@@ -58,7 +54,6 @@ List<CustomeSettingItemModel> SettingItems = [
       if (sl<SharedLocal>().getUser().token == null) {
         sl<NavigationService>().navigateTo(Routes.login);
       } else {
-        // sl<SettingProvider>().logoutProvider();
         showDialog(
           context: sl<AuthProvider>().scaffoldKey.currentContext!,
           builder: (context) {
@@ -93,14 +88,6 @@ List<CustomeSettingItemModel> SettingItems = [
       }
     },
     path: IconAssets.logout,
-
-    // CustomSvgAssets(
-    //   path: IconAssets.logout,
-    //   color:
-    //   sl<SharedLocal>().getUser().token != ""
-    //       ? ColorManager.red
-    //       : ColorManager.primary,
-    // ),
     title: sl<SharedLocal>().getUser().token != "" ? 'Logout' : 'Login',
   ),
 ];
