@@ -36,7 +36,6 @@ class SettingProvider extends ChangeNotifier {
       LoginResponse res = await sl<SettingRepository>().logout();
       sl<SharedLocal>().removeUser();
       sl<NavigationService>().navigateToAndRemove(Routes.login);
-      // sl<SettingProvider>().clearUserData();
       AppConfig.showSnakBar("${res.message}", Success: true);
     } on DioError catch (e) {
       AppConfig().showException(e);
