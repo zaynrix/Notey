@@ -20,11 +20,10 @@ class LoginRepository {
     );
 
     LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-
-    // if (loginResponse.status == true) {
-    return loginResponse;
-    // }
-    // throw '${loginResponse.message}';
+    if (loginResponse.status == true) {
+      return loginResponse;
+    }
+    throw '${loginResponse.message}';
   }
 
   // ------------------ User Signup ------------------
@@ -45,7 +44,10 @@ class LoginRepository {
       },
     );
     LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-    return loginResponse;
+    if (loginResponse.status == true) {
+      return loginResponse;
+    }
+    throw '${loginResponse.message}';
   }
 
   // ------------------ User Forget Password ------------------
