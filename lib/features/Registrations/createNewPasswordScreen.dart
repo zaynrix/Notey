@@ -120,8 +120,6 @@ class CreateNewPassword extends StatelessWidget {
                           },
                           validator: (val) {
                             if (val!.isEmpty) return 'Empty';
-                            // if (val != provider.passwordController.text)
-                            //   return 'Not Match';
                             return null;
                           },
                         ),
