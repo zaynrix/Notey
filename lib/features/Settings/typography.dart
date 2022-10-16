@@ -1,19 +1,18 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/features/Home/homeScreen.dart';
-import 'package:notey/features/Settings/settingProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/taskModel.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/resources/color_manager.dart';
+import 'package:notey/features/Home/homeScreen.dart';
 import 'package:notey/shared/widgets/CustomAppBar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:notey/shared/widgets/CustomCTAButton.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
 
 class TypographyScreen extends StatelessWidget {
   TypographyScreen({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,10 @@ class TypographyScreen extends StatelessWidget {
                         width: 50,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: sl<SharedLocal>().getColorIndex == index ? ColorManager.white : ColorManager.parent, //                   <--- border color
+                            color: sl<SharedLocal>().getColorIndex == index
+                                ? ColorManager.white
+                                : ColorManager.parent,
+                            //                   <--- border color
                             width: 3.0,
                           ),
                           borderRadius: BorderRadius.circular(10.r),
@@ -80,7 +82,8 @@ class TypographyScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "Fonts size :".tr()+" ${10 * sl<SharedLocal>().getFontSize}",
+                      "Fonts size :".tr() +
+                          " ${10 * sl<SharedLocal>().getFontSize}",
                       style: Theme.of(context).textTheme.headline2,
                     ),
                   ],
