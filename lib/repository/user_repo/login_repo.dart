@@ -37,10 +37,10 @@ class LoginRepository {
     final response = await sl<HttpAuth>().postData(
       url: "${Endpoints.auth}" "${Endpoints.signUp}",
       data: {
-        'email': email, // yahya1@gmail.com
-        'password': password, // yahya123
-        'full_name': name, // yahya
-        'gender': gender.toUpperCase(), // M
+        'email': email,
+        'password': password,
+        'full_name': name,
+        'gender': gender.toUpperCase(),
       },
     );
     LoginResponse loginResponse = LoginResponse.fromJson(response.data);
@@ -62,7 +62,10 @@ class LoginRepository {
       },
     );
     LoginResponse loginResponse = LoginResponse.fromJson(response.data);
-    return loginResponse;
+    if (loginResponse.status == true) {
+      return loginResponse;
+    }
+    throw '${loginResponse.message}';
   }
 
   Future<LoginResponse> changePassword(
@@ -78,6 +81,9 @@ class LoginRepository {
     );
 
     LoginResponse users = LoginResponse.fromJson(response.data);
-    return users;
+    if (users.status == true) {
+      return users;
+    }
+    throw '${users.message}';
   }
 }
