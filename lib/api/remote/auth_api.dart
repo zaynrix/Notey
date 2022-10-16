@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class HttpAuth {
   final Dio client;
 
-  HttpAuth({required this.client});
+  HttpAuth({required Dio this.client});
 
   // ---------- Get Data ----------
 
