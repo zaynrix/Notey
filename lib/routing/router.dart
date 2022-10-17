@@ -50,7 +50,6 @@ class RouterX {
 
 
     // ------------- Forget Password Screen ---------------
-
       case Routes.forgetPassword:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider.value(
