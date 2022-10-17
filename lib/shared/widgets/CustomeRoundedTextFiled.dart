@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFiled extends StatelessWidget {
   CustomTextFiled(
-      {required this.onChanged,
+      { this.onChanged,
       this.controller,
       required this.hintText,
       required this.focuse,
@@ -25,7 +25,7 @@ class CustomTextFiled extends StatelessWidget {
       this.suffixIcon});
 
   final List<TextInputFormatter>? inputFormatters;
-  final Function(String?) onChanged;
+  final Function(String?)? onChanged;
   final void Function(String) focuse;
   final String? Function(String?)? validator;
   final String hintText;

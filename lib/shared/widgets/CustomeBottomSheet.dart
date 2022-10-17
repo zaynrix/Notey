@@ -25,23 +25,21 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+      // padding:  EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+      padding: EdgeInsetsDirectional.all(25),
       child: SingleChildScrollView(
         child: Consumer<HomeProvider>(
           builder: (context, data, child) => Form(
             key: data.formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      AppStrings().addNote,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
-                          color: ColorManager.white,
-                          fontWeight: FontWeightManager.semiBold),
-                    )
-                  ],
+                Text(
+                  AppStrings().addNote,
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                      color: ColorManager.white,
+                      fontWeight: FontWeightManager.semiBold),
                 ),
                 SizedBox(
                   height: 32.h,
@@ -53,12 +51,10 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                   maxLines: 5,
                   controller: data.noteTitle,
                   hintText: '${AppStrings().typeSomething}',
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.streetAddress,
                   focuse: (_) => FocusScope.of(context).nearestScope,
                   textInputAction: TextInputAction.next,
-                  onChanged: (val) {
-                    data.noteTitle.text = val!;
-                  },
+                  // onChanged: (val) {},
                   validator: (value) => Validator2.validateName(value ?? ""),
                 ),
                 SizedBox(
@@ -67,9 +63,11 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                 CustomeCTAButton(
                   trigger: data.loading,
                   primary: ColorManager.secondColor,
-                  onPressed: data.loading != true  ?() {
-                    data.id == 0 ? data.addTask() : data.updateTask();
-                  } : (){},
+                  onPressed: data.loading != true
+                      ? () {
+                          data.id == 0 ? data.addTask() : data.updateTask();
+                        }
+                      : () {},
                   title: data.id != 0 ? AppStrings().update : AppStrings().save,
                 ),
                 SizedBox(
@@ -77,7 +75,6 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                 ),
                 CustomeCTAButtonCancel(
                   trigger: false,
-
                   primary: ColorManager.lightGrey,
                   onPressed: () {
                     data.id = 0;
@@ -98,7 +95,6 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
   }
 }
 
-
 class BottomSheetLanguage extends StatefulWidget {
   @override
   _BottomSheetLanguageState createState() => _BottomSheetLanguageState();
@@ -114,7 +110,6 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-
           children: [
             Row(
               children: [
@@ -145,11 +140,10 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
                   elevation: 0,
                   child: Padding(
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+                        const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
                     child: RadioListTile(
-
-                      activeColor: sl<SettingProvider>().CCC[sl<SharedLocal>().getColorIndex][0],
-
+                      activeColor: sl<SettingProvider>()
+                          .CCC[sl<SharedLocal>().getColorIndex][0],
                       toggleable: false,
                       value: index,
                       onChanged: (dynamic value) {
@@ -160,7 +154,8 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
 
                         setState(() {
                           data.changeLanguage(value);
-                          sl<SharedLocal>().setLanguageIndex = data.languageValue;
+                          sl<SharedLocal>().setLanguageIndex =
+                              data.languageValue;
 
                           data.languageValue = value;
                         });
@@ -169,7 +164,10 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
                       groupValue: sl<SharedLocal>().getIndexLang,
                       title: Text(
                         "${Language.languageList[index].name}",
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(color: ColorManager.white),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .copyWith(color: ColorManager.white),
                       ),
                     ),
                   ),
@@ -186,8 +184,3 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
     );
   }
 }
-
-
-
-
-

@@ -41,18 +41,12 @@ class HomeProvider extends ChangeNotifier {
 
   Future getHome() async {
     init = false;
-    // try {
     TaskModel taskModel = await sl<HomeRepository>().getTasks();
     tasks = taskModel.data;
     notifyListeners();
     if (tasks!.isEmpty) {
       init = true;
     }
-    // }  catch (e) {
-    //   init = false;
-    //   notifyListeners();
-    //   // AppConfig().showException(e);
-    // }
   }
 
   // ------------------ Add Task ------------------

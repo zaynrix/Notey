@@ -10,7 +10,6 @@ class HomeRepository {
       url: Endpoints.tasks,
     );
     TaskModel taskModel = TaskModel.fromJson(response.data);
-
     if (taskModel.status == true) {
       return taskModel;
     }
@@ -21,7 +20,7 @@ class HomeRepository {
   Future<TaskModel> addTask(String title) async {
     final response = await sl<HttpAuth>().postData(
       url: Endpoints.tasks,
-      data: {"titles": title}
+      data: {"title": title}
     );
     TaskModel taskModel = TaskModel.fromJson(response.data);
 
