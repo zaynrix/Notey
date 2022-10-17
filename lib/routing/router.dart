@@ -68,7 +68,6 @@ class RouterX {
         );
 
     // ------------- Signup Screen ---------------
-
       case Routes.signUp:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider.value(
