@@ -201,7 +201,7 @@ class Signup extends StatelessWidget {
                           path: IconAssets.lock,
                         ),
                         hintText: 'ConfirmPassword',
-                        focuse: (_) => FocusScope.of(context).nextFocus(),
+                        focuse: (_) => FocusScope.of(context).parent,
                         textInputAction: TextInputAction.done,
                         onChanged: (val) {
                           provider.confirmPasswordController.text = val!;

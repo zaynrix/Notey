@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFiled extends StatelessWidget {
   CustomTextFiled(
-      { this.onChanged,
+      {this.onChanged,
       this.controller,
       required this.hintText,
       required this.focuse,
@@ -41,22 +41,21 @@ class CustomTextFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            offset: Offset(0, 10),
-            color: ColorManager.black.withOpacity(0.03),
-            blurRadius: 20)
-      ]),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              offset: Offset(0, 10),
+              color: ColorManager.black.withOpacity(0.03),
+              blurRadius: 20)
+        ],
+      ),
       child: TextFormField(
-
-        // minLines:maxLines,
         maxLines: maxLines,
         inputFormatters: inputFormatters ?? [],
         autovalidateMode: AutovalidateMode.onUserInteraction,
         obscureText: obscureText,
         validator: validator,
         onChanged: onChanged,
-        // textDirection: TextDirection.RTL,
         keyboardType: keyboardType ?? TextInputType.text,
         onFieldSubmitted: focuse,
         controller: controller,
@@ -80,7 +79,6 @@ class CustomTextFiled extends StatelessWidget {
             borderSide: BorderSide(color: Colors.red),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            //com
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
             borderSide: BorderSide(color: Colors.red),
           ),
