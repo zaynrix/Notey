@@ -100,6 +100,8 @@ class RouterX {
           builder: (_) => ContactUsScreen(),
         );
 
+
+    // ------------- Default Route ---------------
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
