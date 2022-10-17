@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
+
 import 'dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -14,6 +16,8 @@ import 'package:notey/repository/user_repo/login_repo.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/features/Registrations/auth_provider.dart';
 import 'package:notey/repository/setting_repo/srtting_repo.dart';
+
+import 'logger_interceptor.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
@@ -31,8 +35,9 @@ Future<void> init() async {
  sl.registerLazySingleton<Dio>(() => client);
 
  client..interceptors..interceptors.addAll([
+
    DioInterceptor(),
-   // LoggerInterceptor(),
+   if (kDebugMode) LoggerInterceptor(),
  ]);
   sl.registerLazySingleton(() => AppConfig());
   sl.registerLazySingleton(() => NavigationService());

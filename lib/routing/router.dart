@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:notey/features/Home/homeScreen.dart';
-import 'package:notey/features/Registrations/auth_provider.dart';
-import 'package:notey/features/Registrations/createNewPasswordScreen.dart';
-import 'package:notey/features/Registrations/forgetPasswordScreen.dart';
 import 'package:notey/features/Registrations/loginScreen.dart';
+import 'package:notey/features/Registrations/auth_provider.dart';
+import 'package:notey/features/Registrations/forgetPasswordScreen.dart';
+import 'package:notey/features/Registrations/createNewPasswordScreen.dart';
 import 'package:notey/features/Registrations/signUpScreen.dart';
 import 'package:notey/features/Settings/contactUsScreen.dart';
 import 'package:notey/features/Settings/settingScreen.dart';
