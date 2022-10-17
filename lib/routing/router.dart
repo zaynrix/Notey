@@ -77,7 +77,6 @@ class RouterX {
         );
 
     // ------------- Home Screen ---------------
-
       case Routes.home:
         return MaterialPageRoute(
           builder: (_) => HomeScreen(),
