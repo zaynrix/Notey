@@ -89,7 +89,6 @@ class RouterX {
         );
 
     // ------------- Theme Screen ---------------
-
       case Routes.typographyScreen:
         return MaterialPageRoute(
           builder: (_) => TypographyScreen(),
