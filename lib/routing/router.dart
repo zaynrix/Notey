@@ -83,7 +83,6 @@ class RouterX {
         );
 
     // ------------- Settings Screen ---------------
-
       case Routes.setting:
         return MaterialPageRoute(
           builder: (_) => SettingsScreen(),
