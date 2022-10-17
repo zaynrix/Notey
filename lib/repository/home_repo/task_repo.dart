@@ -21,7 +21,7 @@ class HomeRepository {
   Future<TaskModel> addTask(String title) async {
     final response = await sl<HttpAuth>().postData(
       url: Endpoints.tasks,
-      data: {"title": title}
+      data: {"titles": title}
     );
     TaskModel taskModel = TaskModel.fromJson(response.data);
 

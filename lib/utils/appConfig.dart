@@ -51,7 +51,7 @@ class AppConfig extends ChangeNotifier {
   showException(DioError e) {
     final errorMessage = DioExceptions.fromDioError(e).toString();
     AppConfig.showSnakBar(
-        "${e.response != null ? e.response!.data["message"] : errorMessage}",
+        "${e.response != null ? e.message : errorMessage}",
         Success: false);
   }
 }

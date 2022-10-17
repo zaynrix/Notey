@@ -37,7 +37,7 @@ Future<void> init() async {
  client..interceptors..interceptors.addAll([
 
    DioInterceptor(),
-   if (kDebugMode) LoggerInterceptor(),
+   // if (kDebugMode) LoggerInterceptor(),
  ]);
   sl.registerLazySingleton(() => AppConfig());
   sl.registerLazySingleton(() => NavigationService());

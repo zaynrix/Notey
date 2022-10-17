@@ -30,76 +30,85 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ------------------ change init ------------------
+
+  changeInit(value) {
+    init = value;
+    notifyListeners();
+  }
+
   // ------------------ Get Tasks ------------------
 
   Future getHome() async {
     init = false;
-    try {
-      TaskModel taskModel = await sl<HomeRepository>().getTasks();
-      tasks = taskModel.data;
-      notifyListeners();
-      if (tasks!.isEmpty) {
-        init = true;
-      }
-    } on DioError catch (e) {
-      init = false;
-      notifyListeners();
-      AppConfig().showException(e);
+    // try {
+    TaskModel taskModel = await sl<HomeRepository>().getTasks();
+    tasks = taskModel.data;
+    notifyListeners();
+    if (tasks!.isEmpty) {
+      init = true;
     }
+    // }  catch (e) {
+    //   init = false;
+    //   notifyListeners();
+    //   // AppConfig().showException(e);
+    // }
   }
 
   // ------------------ Add Task ------------------
 
   Future addTask() async {
     if (formKey.currentState!.validate()) {
-      try {
-        TaskModel taskModel =
-            await sl<HomeRepository>().addTask(noteTitle.text);
-        tasks!.add(taskModel.singleData!);
-        notifyListeners();
-      } on DioError catch (e) {
-        AppConfig().showException(e);
-      }
+      // try {
+      // print("pop befor");
+      TaskModel taskModel = await sl<HomeRepository>().addTask(noteTitle.text);
+      tasks!.add(taskModel.singleData!);
+      notifyListeners();
+
+      sl<NavigationService>().pop();
+      print("pop After");
+      // } on DioError catch (e) {
+      //   AppConfig().showException(e);
+      // }
 
       resetNote();
 
-      sl<NavigationService>().pop();
     }
   }
 
   // ------------------ Delete Task ------------------
 
   Future deleteTask() async {
-    try {
-      TaskModel taskModel = await sl<HomeRepository>().deleteTask(id!);
-      if (taskModel.status!) {
-        tasks!.removeWhere((i) => i.id == id);
-        getHome();
-        notifyListeners();
-      } else {
-        AppConfig.showSnakBar("${taskModel.message}", Success: false);
-      }
-    } on DioError catch (e) {
-      init = false;
+    // try {
+    TaskModel taskModel = await sl<HomeRepository>().deleteTask(id!);
+    if (taskModel.status!) {
+      tasks!.removeWhere((i) => i.id == id);
+      getHome();
       notifyListeners();
-      AppConfig().showException(e);
+    } else {
+      AppConfig.showSnakBar("${taskModel.message}", Success: false);
     }
+    // } on DioError catch (e) {
+    //   init = false;
+    //   notifyListeners();
+    //   AppConfig().showException(e);
+    // }
     resetNote();
   }
 
   // ------------------ Update Task ------------------
 
   Future updateTask() async {
-    try {
-      TaskModel taskModel =
-          await sl<HomeRepository>().updateTask(id!, noteTitle.text);
-      if (taskModel.status == true) {
-        getHome();
-        notifyListeners();
-      }
-    } on DioError catch (e) {
-      AppConfig().showException(e);
+    // try {
+    TaskModel taskModel =
+        await sl<HomeRepository>().updateTask(id!, noteTitle.text);
+    if (taskModel.status == true) {
+      getHome();
+      notifyListeners();
     }
+    // } on DioError catch (e) {
+    //   AppConfig().showException(e);
+    // }
     resetNote();
     init = false;
     sl<NavigationService>().pop();

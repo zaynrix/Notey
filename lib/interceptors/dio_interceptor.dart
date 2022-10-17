@@ -15,6 +15,7 @@ class DioInterceptor extends Interceptor {
     options.headers["lang"] = "${sl<SharedLocal>().getLanguage}";
     options.headers["Content-Type"] = "application/json";
     options.headers["X-Requested-With"] = "XMLHttpRequest";
+
     super.onRequest(options, handler);
   }
 
@@ -28,10 +29,11 @@ class DioInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  onError(DioError err, ErrorInterceptorHandler handler) async {
     sl<AuthProvider>().changeLoaderAuth(false);
     sl<HomeProvider>().changeLoader(false);
+    sl<HomeProvider>().changeInit(false);
     AppConfig().showException(err);
-
+    super.onError(err, handler);
   }
 }
