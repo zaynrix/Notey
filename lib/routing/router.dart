@@ -59,7 +59,6 @@ class RouterX {
         );
 
     // ------------- Create Password Screen ---------------
-
       case Routes.createNewPassword:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider.value(
