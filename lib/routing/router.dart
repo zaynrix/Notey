@@ -40,7 +40,6 @@ class RouterX {
 
 
     // ------------- Login Screen ---------------
-
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider.value(
