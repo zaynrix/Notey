@@ -1,19 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/features/Settings/settingProvider.dart';
-import 'package:notey/interceptors/di.dart';
-import 'package:notey/models/languageModel.dart';
-import 'package:notey/routing/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:notey/utils/validator.dart';
+import 'package:notey/interceptors/di.dart';
+import 'package:notey/routing/navigation.dart';
+import 'package:notey/models/languageModel.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/resources/font_manager.dart';
 import 'package:notey/resources/color_manager.dart';
 import 'package:notey/resources/strings_manager.dart';
 import 'package:notey/features/Home/homeProvider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:notey/shared/widgets/CustomCTAButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
 
 class BottomSheetNote extends StatefulWidget {
@@ -53,7 +53,6 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                   keyboardType: TextInputType.streetAddress,
                   focuse: (_) => FocusScope.of(context).nearestScope,
                   textInputAction: TextInputAction.next,
-                  // onChanged: (val) {},
                   validator: (value) => Validator2.validateName(value ?? ""),
                 ),
                 SizedBox(
