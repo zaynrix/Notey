@@ -151,13 +151,10 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
                         context.setLocale(Locale(
                             '${Language.languageList[index].languageCode}'));
 
-                        setState(() {
                           data.changeLanguage(value);
                           sl<SharedLocal>().setLanguageIndex =
                               data.languageValue;
-
                           data.languageValue = value;
-                        });
                       },
                       controlAffinity: ListTileControlAffinity.leading,
                       groupValue: sl<SharedLocal>().getIndexLang,
