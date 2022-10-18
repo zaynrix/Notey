@@ -15,7 +15,6 @@ class DioInterceptor extends Interceptor {
     options.headers["lang"] = "${sl<SharedLocal>().getLanguage}";
     options.headers["Content-Type"] = "application/json";
     options.headers["X-Requested-With"] = "XMLHttpRequest";
-
     super.onRequest(options, handler);
   }
 

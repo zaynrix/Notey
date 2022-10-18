@@ -14,7 +14,7 @@ class HttpAuth {
     _client.options.headers = {
       'Content-Type': 'application/json',
     };
-    return _client.get(url + "w", queryParameters: query);
+    return _client.get(url, queryParameters: query);
   }
 
   // ---------- Post Data ----------
