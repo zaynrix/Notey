@@ -92,7 +92,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     itemCount: SettingItems.length,
                     itemBuilder: (context, index) {
-                      return CustomeSettingItem(
+                      return CustomSettingItem(
                         redColor: SettingItems[index].redColor,
                         onPressed: SettingItems[index].onPressed,
                         title: SettingItems[index].title,
