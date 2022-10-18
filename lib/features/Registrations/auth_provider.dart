@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:notey/routing/routes.dart';
 import 'package:notey/utils/appConfig.dart';
@@ -78,13 +77,11 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> loginProvider() async {
     if (loginFormKey.currentState!.validate()) {
-      try {
-        LoginResponse res = await sl<LoginRepository>().userLogin(
-            email: emailController.text, password: passwordController.text);
-        sl<SharedLocal>().setUser(res.object!);
-        sl<NavigationService>().navigateToAndRemove(Routes.home);
-        AppConfig.showSnakBar("Logged", Success: true);
-      } on DioError {}
+      LoginResponse res = await sl<LoginRepository>().userLogin(
+          email: emailController.text, password: passwordController.text);
+      sl<SharedLocal>().setUser(res.object!);
+      sl<NavigationService>().navigateToAndRemove(Routes.home);
+      AppConfig.showSnakBar("Logged", Success: true);
     }
   }
 
@@ -92,17 +89,15 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> SignupProvider() async {
     if (signUpFormKey.currentState!.validate()) {
-      try {
-        LoginResponse res = await sl<LoginRepository>().userSignup(
-            name: fullname.text,
-            email: emailController.text,
-            password: passwordController.text,
-            gender: keyGender!);
-        AppConfig.showSnakBar(
-            "${res.message ?? "Account was created Successfully!!"}",
-            Success: true);
-        sl<NavigationService>().navigateToAndRemove(Routes.login);
-      } on DioError {}
+      LoginResponse res = await sl<LoginRepository>().userSignup(
+          name: fullname.text,
+          email: emailController.text,
+          password: passwordController.text,
+          gender: keyGender!);
+      AppConfig.showSnakBar(
+          "${res.message ?? "Account was created Successfully!!"}",
+          Success: true);
+      sl<NavigationService>().navigateToAndRemove(Routes.login);
     }
   }
 
@@ -110,15 +105,13 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> forgetProvider() async {
     if (forgetFormKey.currentState!.validate()) {
-      try {
-        LoginResponse res = await sl<LoginRepository>()
-            .userForgetPassword(email: emailController.text);
+      LoginResponse res = await sl<LoginRepository>()
+          .userForgetPassword(email: emailController.text);
 
-        sl<SharedLocal>().setSignUpTempo("${emailController.text}");
-        sl<SharedLocal>().setCode = res.code!;
-        AppConfig.showSnakBar("${res.message}", Success: true);
-        sl<NavigationService>().navigateToAndRemove(Routes.createNewPassword);
-      } on DioError {}
+      sl<SharedLocal>().setSignUpTempo("${emailController.text}");
+      sl<SharedLocal>().setCode = res.code!;
+      AppConfig.showSnakBar("${res.message}", Success: true);
+      sl<NavigationService>().navigateToAndRemove(Routes.createNewPassword);
     }
   }
 
@@ -126,12 +119,10 @@ class AuthProvider extends ChangeNotifier {
 
   void changePasswordProvider() async {
     if (formKey2.currentState!.validate()) {
-      try {
-        LoginResponse response = await sl<LoginRepository>().changePassword(
-            currentPassword: currentPass.text, newPassword: newPass.text);
-        AppConfig.showSnakBar("${response.message}", Success: true);
-        sl<NavigationService>().navigateToAndRemove(Routes.login);
-      } on DioError {}
+      LoginResponse response = await sl<LoginRepository>().changePassword(
+          currentPassword: currentPass.text, newPassword: newPass.text);
+      AppConfig.showSnakBar("${response.message}", Success: true);
+      sl<NavigationService>().navigateToAndRemove(Routes.login);
     }
   }
 }

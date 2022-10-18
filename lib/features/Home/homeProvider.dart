@@ -53,17 +53,12 @@ class HomeProvider extends ChangeNotifier {
 
   Future addTask() async {
     if (formKey.currentState!.validate()) {
-      // try {
-      // print("pop befor");
       TaskModel taskModel = await sl<HomeRepository>().addTask(noteTitle.text);
       tasks!.add(taskModel.singleData!);
       notifyListeners();
 
-      sl<NavigationService>().pop();
-      print("pop After");
-      // } on DioError catch (e) {
-      //   AppConfig().showException(e);
-      // }
+      // sl<NavigationService>().pop();
+
 
       resetNote();
 
@@ -82,27 +77,19 @@ class HomeProvider extends ChangeNotifier {
     } else {
       AppConfig.showSnakBar("${taskModel.message}", Success: false);
     }
-    // } on DioError catch (e) {
-    //   init = false;
-    //   notifyListeners();
-    //   AppConfig().showException(e);
-    // }
+
     resetNote();
   }
 
   // ------------------ Update Task ------------------
 
   Future updateTask() async {
-    // try {
     TaskModel taskModel =
         await sl<HomeRepository>().updateTask(id!, noteTitle.text);
     if (taskModel.status == true) {
       getHome();
       notifyListeners();
     }
-    // } on DioError catch (e) {
-    //   AppConfig().showException(e);
-    // }
     resetNote();
     init = false;
     sl<NavigationService>().pop();

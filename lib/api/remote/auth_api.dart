@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
 class HttpAuth {
-  final Dio client;
+  final Dio _client;
 
-  HttpAuth({required Dio this.client});
+  HttpAuth({required Dio client}) : _client = client;
 
   // ---------- Get Data ----------
 
@@ -12,10 +12,10 @@ class HttpAuth {
     Map<String, dynamic>? query,
   })  {
 
-     client.options.headers = {
+     _client.options.headers = {
       'Content-Type': 'application/json',
     };
-    return  client.get(url, queryParameters: query);
+    return  _client.get(url, queryParameters: query);
   }
 
   // ---------- Post Data ----------
@@ -27,13 +27,13 @@ class HttpAuth {
     String lang = 'en',
     String? token,
   })  {
-     client.options.headers = {
+     _client.options.headers = {
       'lang': lang,
       'Authorization': token ?? '',
       'Content-Type': 'application/json'
     };
 
-    return  client.post(url, queryParameters: query, data: data);
+    return  _client.post(url, queryParameters: query, data: data);
   }
 
   // ---------- Update Data ----------
@@ -45,13 +45,13 @@ class HttpAuth {
     String lang = 'en',
     String? token,
   })  {
-     client.options.headers = {
+     _client.options.headers = {
       'lang': lang,
       'Authorization': token ?? '',
       'Content-Type': 'application/json'
     };
 
-    return  client.put(url, queryParameters: query, data: data);
+    return  _client.put(url, queryParameters: query, data: data);
   }
 
   // ---------- Delete Data ----------
@@ -62,11 +62,11 @@ class HttpAuth {
     String lang = 'en',
     String? token,
   })  {
-    client.options.headers = {
+     _client.options.headers = {
       'lang': lang,
       'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
-    return  client.delete(url, queryParameters: query);
+    return  _client.delete(url, queryParameters: query);
   }
 }

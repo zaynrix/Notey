@@ -12,6 +12,8 @@ import 'package:notey/resources/color_manager.dart';
 import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
 import 'package:notey/repository/setting_repo/srtting_repo.dart';
 
+import '../Home/homeProvider.dart';
+
 class SettingProvider extends ChangeNotifier {
   int languageValue = 0;
   double textSize = 5;
@@ -32,14 +34,12 @@ class SettingProvider extends ChangeNotifier {
   // ------------------ Logout ------------------
 
   Future<void> logoutProvider() async {
-    try {
       LoginResponse res = await sl<SettingRepository>().logout();
       sl<SharedLocal>().removeUser();
+      sl<HomeProvider>().tasks!.clear();
+      notifyListeners();
       sl<NavigationService>().navigateToAndRemove(Routes.login);
       AppConfig.showSnakBar("${res.message}", Success: true);
-    } on DioError catch (e) {
-      AppConfig().showException(e);
-    }
   }
 
   // ------------------ Change Language ------------------

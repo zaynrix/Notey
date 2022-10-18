@@ -22,6 +22,9 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class HomeScreen extends StatelessWidget {
 
+  HomeScreen(){
+    sl<HomeProvider>().getHome();
+  }
   @override
   Widget build(BuildContext context) {
     return Consumer2<HomeProvider, SettingProvider>(
