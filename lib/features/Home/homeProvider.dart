@@ -56,19 +56,14 @@ class HomeProvider extends ChangeNotifier {
       TaskModel taskModel = await sl<HomeRepository>().addTask(noteTitle.text);
       tasks!.add(taskModel.singleData!);
       notifyListeners();
-
-      // sl<NavigationService>().pop();
-
-
+      sl<NavigationService>().pop();
       resetNote();
-
     }
   }
 
   // ------------------ Delete Task ------------------
 
   Future deleteTask() async {
-    // try {
     TaskModel taskModel = await sl<HomeRepository>().deleteTask(id!);
     if (taskModel.status!) {
       tasks!.removeWhere((i) => i.id == id);
@@ -77,7 +72,6 @@ class HomeProvider extends ChangeNotifier {
     } else {
       AppConfig.showSnakBar("${taskModel.message}", Success: false);
     }
-
     resetNote();
   }
 

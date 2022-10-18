@@ -25,7 +25,6 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      // padding:  EdgeInsets.symmetric(horizontal: 25, vertical: 25),
       padding: EdgeInsetsDirectional.all(25),
       child: SingleChildScrollView(
         child: Consumer<HomeProvider>(
