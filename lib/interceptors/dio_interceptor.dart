@@ -32,6 +32,7 @@ class DioInterceptor extends Interceptor {
     sl<HomeProvider>().changeLoader(false);
     sl<HomeProvider>().changeInit(false);
     AppConfig().showException(err);
+
     // super.onError(err, handler);
   }
 }
