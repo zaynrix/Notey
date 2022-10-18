@@ -23,8 +23,6 @@ class DioInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     sl<HomeProvider>().changeLoader(false);
     sl<AuthProvider>().changeLoaderAuth(false);
-
-    print(sl<HomeProvider>().loading);
     super.onResponse(response, handler);
   }
 
@@ -34,6 +32,6 @@ class DioInterceptor extends Interceptor {
     sl<HomeProvider>().changeLoader(false);
     sl<HomeProvider>().changeInit(false);
     AppConfig().showException(err);
-    super.onError(err, handler);
+    // super.onError(err, handler);
   }
 }
