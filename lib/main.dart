@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        final platformIsIOS = Platform.isIOS;
+        // final platformIsIOS = Platform.isIOS;
 
         return MultiProvider(
           providers: [
