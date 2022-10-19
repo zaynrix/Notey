@@ -15,6 +15,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Localization
   await EasyLocalization.ensureInitialized();
 
   // Screen Utils Initialize
