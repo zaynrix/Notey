@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
+        final platformIsIOS = Platform.isIOS;
+
         return MultiProvider(
           providers: [
             StreamProvider<InternetConnectionStatus>(
@@ -62,7 +66,7 @@ class MyApp extends StatelessWidget {
               value: sl<SettingProvider>(),
             ),
           ],
-          child: MaterialApp(
+          child:  MaterialApp(
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
