@@ -20,6 +20,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   await init();
+
   sl<AppConfig>().loadData();
 
   SystemChrome.setSystemUIOverlayStyle(
