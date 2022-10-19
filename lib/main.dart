@@ -19,10 +19,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
+
+  // DI
   await init();
 
+  // Introduction Show & User Token
   sl<AppConfig>().loadData();
 
+  // Device Status Bar Color
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
