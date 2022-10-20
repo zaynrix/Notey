@@ -35,7 +35,6 @@ class SettingProvider extends ChangeNotifier {
   ];
 
   // ------------------ Logout ------------------
-
   Future<void> logoutProvider() async {
       LoginResponse res = await sl<SettingRepository>().logout();
       sl<SharedLocal>().removeUser();
@@ -46,6 +45,7 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Change Language ------------------
+
   changeLanguage(value) {
     languageValue = value;
     notifyListeners();
@@ -66,7 +66,6 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Bottom Language Sheet ------------------
-
   void languageSheet(GlobalKey? ScaffoldKeySheet) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
@@ -79,7 +78,6 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Get Contact Data ------------------
-
   void getContactUsProvider() async {
     ContactUs response = await sl<SettingRepository>().getContactUs();
     contactUsData = response.data!.contactUsData!;
@@ -88,7 +86,6 @@ class SettingProvider extends ChangeNotifier {
     notifyListeners();
   }
   // ------------------ Get Users Data ------------------
-
   void getUsersProvider() async {
     user.Users response = await sl<SettingRepository>().getUsers();
     users = response.usersList!;
@@ -98,7 +95,6 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Lunch URL ------------------
-
   Future<void> launchUrlSite(url) async {
     if (!await launchUrl(Uri.parse(url))) {
       throw 'Could not launch $url';
