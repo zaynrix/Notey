@@ -52,7 +52,6 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Change Note Text Size ------------------
-
   changeSize(double size) {
     textSize = size;
     sl<SharedLocal>().setFontSize = size;
