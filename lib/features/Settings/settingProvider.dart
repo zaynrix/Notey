@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import '../Home/homeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:notey/models/users.dart' as user;
 import 'package:notey/routing/routes.dart';
@@ -13,7 +13,6 @@ import 'package:notey/resources/color_manager.dart';
 import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
 import 'package:notey/repository/setting_repo/srtting_repo.dart';
 
-import '../Home/homeProvider.dart';
 
 class SettingProvider extends ChangeNotifier {
 
@@ -45,14 +44,12 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Change Language ------------------
-
   changeLanguage(value) {
     languageValue = value;
     notifyListeners();
   }
 
   // ------------------ Change Note Text Size ------------------
-
   changeSize(double size) {
     textSize = size;
     sl<SharedLocal>().setFontSize = size;
