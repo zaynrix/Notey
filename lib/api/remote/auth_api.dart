@@ -7,7 +7,7 @@ class HttpAuth {
 
   // ---------- Get Data ----------
 
-  Future<dynamic> getData({
+  Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
   }) async {

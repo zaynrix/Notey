@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:notey/models/users.dart' as user;
 import 'package:notey/routing/routes.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/utils/appConfig.dart';
@@ -18,6 +19,7 @@ class SettingProvider extends ChangeNotifier {
   int languageValue = 0;
   double textSize = 5;
   List<ContactUsData> contactUsData = [];
+  List<user.Data> users = [];
   int colorIndex = 0;
 
   List<List<Color>> CCC = [
@@ -85,6 +87,15 @@ class SettingProvider extends ChangeNotifier {
     contactUsData = response.data!.contactUsData!;
     notifyListeners();
     contactUsData.forEach((element) => ("${element.id} -${element.value}"));
+    notifyListeners();
+  }
+  // ------------------ Get Users Data ------------------
+
+  void getUsersProvider() async {
+    user.Users response = await sl<SettingRepository>().getUsers();
+    users = response.usersList!;
+    notifyListeners();
+    users.forEach((element) => ("${element.id} -${element.image}"));
     notifyListeners();
   }
 

@@ -35,6 +35,15 @@ List<CustomeSettingItemModel> SettingItems = [
       path: IconAssets.language,
       title: "Language"),
   CustomeSettingItemModel(
+      onPressed: () {
+        sl<NavigationService>().navigateTo(Routes.users);
+
+        // sl<SettingProvider>()
+        //     .languageSheet(sl<HomeProvider>().ScaffoldKeySheet);
+      },
+      path: IconAssets.language,
+      title: "Users"),
+  CustomeSettingItemModel(
       onPressed: () {}, path: IconAssets.privacy, title: "Privacy"),
   CustomeSettingItemModel(
       onPressed: () {

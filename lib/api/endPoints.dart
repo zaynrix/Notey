@@ -15,6 +15,7 @@ class Endpoints {
   static const String signUp = '/register';
   static const String forgetPassword = '/forget-password';
   static const String tasks = '/tasks';
+  static const String userImages = '/student/images';
   static const String resetPassword = '/reset-password';
 
 }

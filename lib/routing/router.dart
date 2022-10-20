@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notey/features/Settings/usersScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:notey/routing/routes.dart';
 import 'package:notey/interceptors/di.dart';
@@ -36,6 +37,13 @@ class RouterX {
       case Routes.intro:
         return MaterialPageRoute(
           builder: (_) => const Introduction(),
+        );
+
+    // ------------- Users Screens ---------------
+
+      case Routes.users:
+        return MaterialPageRoute(
+          builder: (_) => UsersScreen(),
         );
 
 

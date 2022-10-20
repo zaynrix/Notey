@@ -5,7 +5,11 @@ import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/contactUsModel.dart';
 import 'package:notey/models/loginModel.dart';
 
-class SettingRepository{
+import '../../models/users.dart';
+
+class SettingRepository {
+
+  //  --------------- Logout Settings ---------------
 
   Future<LoginResponse> logout() async {
     final response = await sl<HttpAuth>().getData(
@@ -19,6 +23,20 @@ class SettingRepository{
     throw '${loginResponse.message}';
   }
 
+  //  --------------- Get Users Settings ---------------
+
+  Future<Users> getUsers() async {
+    final response = await sl<HttpAuth>().getData(
+      url: Endpoints.userImages,
+    );
+    Users users = Users.fromJson(response.data);
+    if (users.status == true) {
+      return users;
+    }
+    throw '${users.message}';
+  }
+
+  //  --------------- Get ContactUs Settings ---------------
 
   Future<ContactUs> getContactUs() async {
     final response = '''
@@ -96,5 +114,4 @@ class SettingRepository{
     ContactUs aboutUs = ContactUs.fromJson(jsonList);
     return aboutUs;
   }
-
 }

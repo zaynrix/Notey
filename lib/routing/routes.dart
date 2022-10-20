@@ -27,6 +27,7 @@ class Routes {
   static const String myPurchessScreen = '/MyPurchessScreen';
   static const String aboutus = '/aboutus';
   static const String contactus = '/contactus';
+  static const String users = '/users';
   static const String terms = '/terms';
   static const String helpCenter = '/helpCenter';
   static const String bottomSheet = '/bottomSheet';
