@@ -16,17 +16,18 @@ import 'package:notey/repository/setting_repo/srtting_repo.dart';
 import '../Home/homeProvider.dart';
 
 class SettingProvider extends ChangeNotifier {
+
   int languageValue = 0;
-  double textSize = 5;
-  List<ContactUsData> contactUsData = [];
-  List<user.Data> users = [];
   int colorIndex = 0;
 
+  double textSize = 5;
+
+  // Data
+  List<user.Data> users = [];
+  List<ContactUsData> contactUsData = [];
+
   List<List<Color>> CCC = [
-    [
-      ColorManager.primary,
-      ColorManager.secondery,
-    ],
+    [ColorManager.primary, ColorManager.secondery,],
     [ColorManager.starYellow, ColorManager.darkGrey],
     [ColorManager.red, ColorManager.darkGrey],
     [ColorManager.secondery, ColorManager.lightGrey],
@@ -45,7 +46,6 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Change Language ------------------
-
   changeLanguage(value) {
     languageValue = value;
     notifyListeners();
