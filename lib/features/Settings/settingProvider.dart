@@ -60,6 +60,7 @@ class SettingProvider extends ChangeNotifier {
   }
 
   // ------------------ Change Note ColorIndex  ------------------
+
   changeIndexColor(int index) {
     colorIndex = index;
     sl<SharedLocal>().setColorIndex = index;
