@@ -5,6 +5,7 @@ import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/loginModel.dart';
 
 class LoginRepository {
+
   // ------------------ User Login ------------------
 
   Future<LoginResponse> userLogin({
