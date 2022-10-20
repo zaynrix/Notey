@@ -40,7 +40,6 @@ class SettingRepository {
 
   Future<ContactUs> getContactUs() async {
     final response = '''
-
 {
     "status": true,
     "message": "null",
