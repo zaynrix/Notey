@@ -34,7 +34,6 @@ class SettingRepository {
   }
 
   //  --------------- Get ContactUs Settings ---------------
-
   Future<ContactUs> getContactUs() async {
     final response = '''
 {
