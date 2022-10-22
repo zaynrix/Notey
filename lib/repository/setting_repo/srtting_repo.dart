@@ -24,7 +24,6 @@ class SettingRepository {
   }
 
   //  --------------- Get Users Settings ---------------
-
   Future<Users> getUsers() async {
     final response = await sl<HttpAuth>().getData(
       url: Endpoints.userImages,
