@@ -10,7 +10,6 @@ import '../../models/users.dart';
 class SettingRepository {
 
   //  --------------- Logout Settings ---------------
-
   Future<LoginResponse> logout() async {
     final response = await sl<HttpAuth>().getData(
       url: Endpoints.tasks,
