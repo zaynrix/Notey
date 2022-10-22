@@ -67,6 +67,7 @@ class LoginRepository {
     }
     throw '${loginResponse.message}';
   }
+  // ------------------ User Forget Password ------------------
 
   Future<LoginResponse> changePassword(
       {String? currentPassword, String? newPassword}) async {
