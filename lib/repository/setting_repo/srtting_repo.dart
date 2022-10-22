@@ -4,7 +4,6 @@ import 'package:notey/api/remote/auth_api.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/contactUsModel.dart';
 import 'package:notey/models/loginModel.dart';
-
 import '../../models/users.dart';
 
 class SettingRepository {
