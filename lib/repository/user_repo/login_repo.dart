@@ -1,8 +1,8 @@
 import 'package:notey/api/endPoints.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/api/remote/auth_api.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/loginModel.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/api/remote/auth_api.dart';
 
 class LoginRepository {
 
