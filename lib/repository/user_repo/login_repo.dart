@@ -28,7 +28,6 @@ class LoginRepository {
   }
 
   // ------------------ User Signup ------------------
-
   Future<LoginResponse> userSignup({
     required String name,
     required String email,
