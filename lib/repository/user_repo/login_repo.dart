@@ -7,7 +7,6 @@ import 'package:notey/models/loginModel.dart';
 class LoginRepository {
 
   // ------------------ User Login ------------------
-
   Future<LoginResponse> userLogin({
     required String email,
     required String password,
