@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:notey/routing/routes.dart';
-import 'package:notey/utils/appConfig.dart';
+import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/loginModel.dart';
-import 'package:notey/routing/navigation.dart';
-import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/repository/user_repo/login_repo.dart';
+import 'package:notey/routing/navigation.dart';
+import 'package:notey/routing/routes.dart';
+import 'package:notey/utils/appConfig.dart';
 
 class AuthProvider extends ChangeNotifier {
   // ------------------ Login - Forget - Signup  ------------------
@@ -76,6 +76,7 @@ class AuthProvider extends ChangeNotifier {
   // ------------------ Login ------------------
 
   Future<void> loginProvider() async {
+    //try
     if (loginFormKey.currentState!.validate()) {
       LoginResponse res = await sl<LoginRepository>().userLogin(
           email: emailController.text, password: passwordController.text);
@@ -83,6 +84,7 @@ class AuthProvider extends ChangeNotifier {
       sl<NavigationService>().navigateToAndRemove(Routes.home);
       AppConfig.showSnakBar("Logged", Success: true);
     }
+    //catch
   }
 
   // ------------------ Sign Up Provider ------------------

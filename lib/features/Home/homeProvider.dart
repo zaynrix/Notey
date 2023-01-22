@@ -1,12 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/models/taskModel.dart';
-import 'package:notey/utils/appConfig.dart';
-import 'package:notey/routing/navigation.dart';
-import 'package:notey/resources/color_manager.dart';
 import 'package:notey/repository/home_repo/task_repo.dart';
+import 'package:notey/resources/color_manager.dart';
+import 'package:notey/routing/navigation.dart';
 import 'package:notey/shared/widgets/CustomeBottomSheet.dart';
+import 'package:notey/utils/appConfig.dart';
 
 class HomeProvider extends ChangeNotifier {
   //
@@ -56,6 +55,8 @@ class HomeProvider extends ChangeNotifier {
       TaskModel taskModel = await sl<HomeRepository>().addTask(noteTitle.text);
       tasks!.add(taskModel.singleData!);
       notifyListeners();
+      noteTitle.clear();
+      // sl<NavigationService>().pop();
       sl<NavigationService>().pop();
       resetNote();
     }
@@ -83,6 +84,7 @@ class HomeProvider extends ChangeNotifier {
     if (taskModel.status == true) {
       getHome();
       notifyListeners();
+      noteTitle.clear();
     }
     resetNote();
     init = false;

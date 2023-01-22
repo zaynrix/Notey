@@ -34,6 +34,10 @@ void main() async {
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark),
   );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(
     EasyLocalization(
@@ -57,8 +61,6 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        // final platformIsIOS = Platform.isIOS;
-
         return MultiProvider(
           providers: [
             StreamProvider<InternetConnectionStatus>(
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
               value: sl<SettingProvider>(),
             ),
           ],
-          child:  MaterialApp(
+          child: MaterialApp(
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

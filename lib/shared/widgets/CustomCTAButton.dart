@@ -1,12 +1,12 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notey/api/local/local_pref.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
 import 'package:notey/interceptors/di.dart';
 import 'package:notey/resources/color_manager.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomeCTAButton extends StatelessWidget {
   bool trigger;
@@ -20,13 +20,14 @@ class CustomeCTAButton extends StatelessWidget {
   String? title;
   Color? ProgressColor;
   Gradient? gradient;
-
+  bool isActive;
   void Function()? onPressed;
   double fontSized;
   Color? color;
 
   CustomeCTAButton(
       {Key? key,
+      this.isActive = true,
       this.widget,
       this.heighbox = 44,
       this.fontSized = 17,
@@ -71,7 +72,7 @@ class CustomeCTAButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(6.r),
           ),
         ),
-        onPressed: onPressed,
+        onPressed: isActive ? onPressed : null,
         child: !trigger
             ? haveWidget
                 ? FittedBox(

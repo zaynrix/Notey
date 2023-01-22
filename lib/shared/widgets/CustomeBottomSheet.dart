@@ -1,20 +1,19 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:notey/utils/validator.dart';
-import 'package:notey/interceptors/di.dart';
-import 'package:notey/routing/navigation.dart';
-import 'package:notey/models/languageModel.dart';
-import 'package:notey/api/local/local_pref.dart';
-import 'package:notey/resources/font_manager.dart';
-import 'package:notey/resources/color_manager.dart';
-import 'package:notey/resources/strings_manager.dart';
-import 'package:notey/features/Home/homeProvider.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:notey/shared/widgets/CustomCTAButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:notey/api/local/local_pref.dart';
+import 'package:notey/features/Home/homeProvider.dart';
 import 'package:notey/features/Settings/settingProvider.dart';
+import 'package:notey/interceptors/di.dart';
+import 'package:notey/models/languageModel.dart';
+import 'package:notey/resources/color_manager.dart';
+import 'package:notey/resources/font_manager.dart';
+import 'package:notey/resources/strings_manager.dart';
+import 'package:notey/shared/widgets/CustomCTAButton.dart';
 import 'package:notey/shared/widgets/CustomeRoundedTextFiled.dart';
+import 'package:notey/utils/validator.dart';
+import 'package:provider/provider.dart';
 
 class BottomSheetNote extends StatefulWidget {
   @override
@@ -76,8 +75,6 @@ class _BottomSheetNoteState extends State<BottomSheetNote> {
                   primary: ColorManager.lightGrey,
                   onPressed: () {
                     data.id = 0;
-                    data.noteTitle.clear();
-                    sl<NavigationService>().pop();
                   },
                   title: AppStrings().cancel,
                 ),
@@ -150,10 +147,9 @@ class _BottomSheetLanguageState extends State<BottomSheetLanguage> {
                         context.setLocale(Locale(
                             '${Language.languageList[index].languageCode}'));
 
-                          data.changeLanguage(value);
-                          sl<SharedLocal>().setLanguageIndex =
-                              data.languageValue;
-                          data.languageValue = value;
+                        data.changeLanguage(value);
+                        sl<SharedLocal>().setLanguageIndex = data.languageValue;
+                        data.languageValue = value;
                       },
                       controlAffinity: ListTileControlAffinity.leading,
                       groupValue: sl<SharedLocal>().getIndexLang,

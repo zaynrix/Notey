@@ -129,6 +129,7 @@
   "HolderName": "اسم حامل البطاقة",
   "CardNumber": "رقم البطاقة",
   "coupon": "كود الكوبون",
+  "Users": "المستخدمين",
   "Are you sure you want to delete": "هل انت متاكد من الحذف؟",
   "Cancel": "الغاء",
   "Delete": "حذف",

@@ -11,6 +11,7 @@ class LoginRepository {
     required String email,
     required String password,
   }) async {
+    // try
     final response = await sl<HttpAuth>().postData(
       url: Endpoints.auth + Endpoints.login,
       data: {
@@ -23,6 +24,7 @@ class LoginRepository {
     if (loginResponse.status == true) {
       return loginResponse;
     }
+    //catch
     throw '${loginResponse.message}';
   }
 
